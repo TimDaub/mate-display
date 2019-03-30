@@ -25,6 +25,7 @@ screen /dev/tty.SLAB_USBtoUART 115200
 
 ```python
 from machine import Pin, SPI
+import ubinascii
 spi = SPI(1, baudrate=2000000, polarity=0, phase=0, firstbit=SPI.MSB, mosi=Pin(16), sck=Pin(17))
 # make the first led light up pink
 spi.write(ubinascii.unhexlify(b'f141f4'))
@@ -43,6 +44,19 @@ while(True):
   num = random.randint(0,6*50-6)
   data = data[:num] + rand() + data[num+6:]
   spi.write(ubinascii.unhexlify(data))
+```
+
+```python
+# ascending light
+import utime
+color = "f141f4"
+color = "f141f4"
+while(True):
+  data = "000000"*50
+  for i in range(0, 50):
+    data = color*i + data[i*6:len(data)]
+    utime.sleep_us(1000)
+    spi.write(ubinascii.unhexlify(data))
 ```
 
 ## Useful links
