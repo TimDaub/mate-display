@@ -30,6 +30,21 @@ spi = SPI(1, baudrate=2000000, polarity=0, phase=0, firstbit=SPI.MSB, mosi=Pin(1
 spi.write(ubinascii.unhexlify(b'f141f4'))
 ```
 
+```python
+# make leds blink randomly
+def randhex():
+  return str(random.choice("0123456789ABCDEF")) + str(random.choice("015D23456789ABCDEF"))
+  
+def rand():
+  return "".join([randhex() for i in range(3)])
+
+while(True):
+  data = '000000'*50
+  num = random.randint(0,6*50-6)
+  data = data[:num] + rand() + data[num+6:]
+  spi.write(ubinascii.unhexlify(data))
+```
+
 ## Useful links
 
 - https://boneskull.com/micropython-on-esp32-part-1/
