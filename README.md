@@ -59,6 +59,20 @@ while(True):
     spi.write(ubinascii.unhexlify(data))
 ```
 
+```python
+# flash strip
+color = "f141f4"
+one = color*50
+two = '000000'*50
+switch = True
+while(True):
+  if switch:
+    spi.write(ubinascii.unhexlify(one))
+  else:
+    spi.write(ubinascii.unhexlify(two))
+  switch = not switch
+```
+
 ## Useful links
 
 - https://boneskull.com/micropython-on-esp32-part-1/
