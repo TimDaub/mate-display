@@ -21,6 +21,15 @@ To run the REPL console on the chip
 screen /dev/tty.SLAB_USBtoUART 115200
 ```
 
+## SPI with micropython REPL
+
+```python
+from machine import Pin, SPI
+spi = SPI(1, baudrate=2000000, polarity=0, phase=0, firstbit=SPI.MSB, mosi=Pin(16), sck=Pin(17))
+# make the first led light up pink
+spi.write(ubinascii.unhexlify(b'f141f4'))
+```
+
 ## Useful links
 
 - https://boneskull.com/micropython-on-esp32-part-1/
