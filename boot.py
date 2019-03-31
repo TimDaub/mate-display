@@ -7,5 +7,5 @@
 #from iterate import iterative_lights
 #iterative_lights()
 
-from glow import glow
-glow()
+from waves import waves
+waves()

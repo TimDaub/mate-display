@@ -12,6 +12,9 @@ class Pixels:
     def set_display(self, display):
         self.data = display
 
+    def set_range(self, index, offset, color):
+        self.data = self.data[:index] + color + self.data[offset:]
+
     def show(self):
         self.spi.write(unhexlify(self.data))
 
