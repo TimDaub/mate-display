@@ -4,6 +4,8 @@
 #import webrepl
 #webrepl.start()
 
-from iterate import iterative_lights
+#from iterate import iterative_lights
+#iterative_lights()
 
-iterative_lights()
+from glow import glow
+glow()

@@ -1,6 +1,5 @@
 from machine import Pin, SPI
 from display import Display
-from pixels import Pixels
 from utime import sleep_us
 
 def iterative_lights():
