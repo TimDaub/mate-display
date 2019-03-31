@@ -73,6 +73,18 @@ while(True):
   switch = not switch
 ```
 
+## Usage with Pixels
+
+```python
+while(True):
+  for i in range(0, 20):
+    p.set_pixel(i, color)
+    p.show()
+    sleep_us(200000)
+  p.clear()
+  sleep_us(200000)
+```
+
 ## Tips
 
 - Don't use while loops in any .py file. You'll have to reflash the esp32 as you will not be able to write files to it anymore. It's busy executing the while loop.
