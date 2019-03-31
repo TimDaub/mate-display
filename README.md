@@ -73,6 +73,10 @@ while(True):
   switch = not switch
 ```
 
+## Tips
+
+- Don't use while loops in any .py file. You'll have to reflash the esp32 as you will not be able to write files to it anymore. It's busy executing the while loop.
+
 ## Useful links
 
 - https://boneskull.com/micropython-on-esp32-part-1/
