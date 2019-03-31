@@ -17,8 +17,11 @@ def waves():
 
     d = Display(spi, 4, 5)
     for i in range(0, 20):
-        d.set_row(i % 4, color)
-        d.set_col(i % 5, color)
-        d.show()
+        row = i % 4
+        col = i % 5
+        d.set_row(row, color)
+        d.set_row(3-row, color)
+        d.set_col(col, color)
+        d.set_col(4-col, color)
         sleep_us(200000)
         d.clear()

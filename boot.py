@@ -7,5 +7,5 @@
 #from iterate import iterative_lights
 #iterative_lights()
 
-from waves import waves
-waves()
+from crosshair import crosshair 
+crosshair()
