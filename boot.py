@@ -10,8 +10,11 @@
 #from scroll import scroll
 #scroll("TIM")
 
-from waves import waves
-waves()
+#from waves import waves
+#waves()
+
+from snowflakes import snowflakes
+snowflakes()
 
 #from iterate import iterative_lights
 #iterative_lights()
