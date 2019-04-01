@@ -7,8 +7,5 @@
 #from iterate import iterative_lights
 #iterative_lights()
 
-from font import dotmatrixtext 
-#dotmatrixtext("TIM")
-
-#from waves import waves
-#waves()
+from crosshair import crosshair 
+crosshair()
