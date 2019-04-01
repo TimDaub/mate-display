@@ -1,4 +1,4 @@
-# This file is executed on every boot (including wake-boot from deepsleep)
+ This file is executed on every boot (including wake-boot from deepsleep)
 #import esp
 #esp.osdebug(None)
 #import webrepl
@@ -7,5 +7,14 @@
 #from iterate import iterative_lights
 #iterative_lights()
 
-from crosshair import crosshair 
-crosshair()
+#from scroll import scroll
+#scroll("TIM")
+
+#from waves import waves
+#waves()
+
+#from snowflakes import snowflakes
+#snowflakes()
+
+from colorpulse import colorwheel
+colorwheel()
