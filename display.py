@@ -7,8 +7,8 @@ class Display:
         self.w = w
 
     def get_pixel(self, x, y):
-        # Our display is wired where odd rows go from left to right
-        # and even rows go from right to left
+        # Our display is wired where even rows go from left to right
+        # and odd rows go from right to left
         index = 0
         if y % 2 == 0:
             index = x + self.w * y
