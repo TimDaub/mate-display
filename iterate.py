@@ -15,16 +15,16 @@ def iterative_lights():
     sleep_us(200000)
     color = "f141f4"
 
-    d = Display(spi, 4, 5)
-    for col in range(0, 5):
-        for row in range(0, 4):
+    d = Display(spi, 8, 5)
+    for col in range(0, d.w):
+        for row in range(0, d.h):
             d.set_pixel(col, row, color)
             sleep_us(200000)
 
     d.clear()
     sleep_us(200000)
 
-    for row in range(0, 4):
-        for col in range(0, 5):
+    for row in range(0, d.h):
+        for col in range(0, d.w):
             d.set_pixel(col, row, color)
             sleep_us(200000)

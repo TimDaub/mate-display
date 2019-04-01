@@ -1,27 +1,38 @@
-from machine import Pin, SPI
-from pixels import Pixels
 from utime import sleep_us
-from random import randint
 
-def glow():
-    spi = SPI(
-        1,
-        baudrate=2000000,
-        polarity=0,
-        phase=0,
-        firstbit=SPI.MSB,
-        mosi=Pin(16),
-        sck=Pin(17)
-    )
-    sleep_us(200000)
+class Glow:
+    def __init__(self, d, timeout=200):
+        self.d = d
+        self.timeout = timeout
 
-    p = Pixels(spi, 20)
-    # warning, this doesn't allow the esp32 to be pushed to anymore
-    for i in range(0, 50):
-        h = randint(0, 16777215)
-        color = hex(h)[2:]
-        color += '0' * (6 - len(color))
-        display = color * 20
-        p.set_display(display)
-        p.show()
-        sleep_us(100000)
+    def set_pixel(self, x, y, r, g, b):
+        for i in range(r or g or b):
+            if r:
+                color = '%02x%02x%02x' % (i, g, b)
+            if g:
+                color = '%02x%02x%02x' % (r, i, b)
+            if b:
+                color = '%02x%02x%02x' % (r, g, i)
+
+            self.d.set_pixel(x, y, color)
+            sleep_us(self.timeout)
+
+    def clear_pixel(self, x, y):
+        color = self.d.get_color(x, y)
+        (r, g, b) = tuple(int(color[i:i+2], 16) for i in (0, 2, 4))
+        for i in reversed(range(r or g or b)):
+            if r:
+                color = '%02x%02x%02x' % (i, g, b)
+            if g:
+                color = '%02x%02x%02x' % (r, i, b)
+            if b:
+                color = '%02x%02x%02x' % (r, g, i)
+
+            self.d.set_pixel(x, y, color)
+            sleep_us(self.timeout)
+
+
+            
+
+
+

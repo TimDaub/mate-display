@@ -15,14 +15,6 @@ def scroll(text):
         sck=Pin(17)
     )
 
-    d = Display(spi, 4, 5)
+    d = Display(spi, 8, 5)
     t = Text(d, text)
-    t.set_letter(0)
-    d.show()
-    sleep_us(1000000)
-    t.offset(1, 0)
-    d.show()
-    sleep_us(1000000)
-    t.offset(1, 0)
-    d.show()
-
+    t.scroll(2)
