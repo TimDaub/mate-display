@@ -9,6 +9,9 @@ class Pixels:
     def set_pixel(self, index, color):
         self.data = self.data[:index * 6] + color + self.data[index * 6 + 6:] 
 
+    def get_pixel(self, index):
+        return self.data[index*6:index*6+6]
+
     def set_display(self, display):
         self.data = display
 
