@@ -51,7 +51,6 @@ class Text:
             self.display.show()
             self.offset(0, 1)
 
-
     def offset(self, dx, dy):
         # NOTE: This is a really bad implementation. I currently don't know how
         # to improve it, however.
@@ -61,7 +60,10 @@ class Text:
                 color = self.display.get_color(x, y)
                 # NOTE: We set the pixels on the Display copy here as we're
                 # otherwise overwriting the old display's pixels.
-                d.set_pixel(x+dx, y+dy, color, False)
+                try:
+                    d.set_pixel(x+dx, y+dy, color, False)
+                except Exception:
+                    pass
                 self.display.set_pixel(x, y, '0' * 6, False)
         # Now we replace the old display with the new one
         self.display.set_data(d.p.data)

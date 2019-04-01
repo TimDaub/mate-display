@@ -17,4 +17,4 @@ def scroll(text):
 
     d = Display(spi, 8, 5)
     t = Text(d, text)
-    t.scroll(2, 10000)
+    t.scroll(2)

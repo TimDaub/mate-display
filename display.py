@@ -24,7 +24,7 @@ class Display:
         return self.p.get_pixel(self.get_pixel(x, y))
 
     def set_pixel(self, x, y, color, show=True):
-        if x > self.w or x < 0 or y > self.h or y < 0:
+        if x > self.w - 1  or x < 0 or y > self.h - 1 or y < 0:
             # TODO: Make IndexValue error
             raise Exception("Out of index")
         else:
