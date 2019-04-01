@@ -7,17 +7,17 @@ class Display:
         self.w = w
 
     def get_pixel(self, x, y):
-        # Our display is wired where even rows go from left to right
-        # and odd rows go from right to left
         index = 0
         if y % 2 == 0:
-            index = x + self.w * y
+            # wiring: top left to bottom
+            #index = x + self.w * y
             #rewiring from bottom left to top left:
-            #index = (self.w * self.h - 1) - (x + self.w * y)
+            index = (self.w * self.h - 1) - (x + self.w * y)
         else:
-            index = self.w * y + self.w - x - 1
+            # wiring: top left to bottom
+            #index = self.w * y + self.w - x - 1
             #rewiring from bottom left to top left
-            #index = (self.w * self.h - 1) - (self.w * y + (self.w - x))
+            index = (self.w * self.h) - (self.w * y + (self.w - x))
         return index
 
     def get_color(self, x, y):
@@ -33,6 +33,7 @@ class Display:
             if show:
                 self.p.show()
 
+    # NOTE: Probably outdated with rewiring
     def set_row(self, row, color, show=True):
         # NOTE: We could do this with self.set_pixel
         colors = color * self.w
@@ -41,6 +42,7 @@ class Display:
         if show:
             self.p.show()
 
+    # NOTE: Probably outdated with rewiring
     def set_col(self, col, color, show=True):
         for i in range(0, self.h):
             self.set_pixel(col, i, color)

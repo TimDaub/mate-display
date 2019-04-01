@@ -9,3 +9,6 @@
 
 from scroll import scroll
 scroll("TIM")
+
+#from iterate import iterative_lights
+#iterative_lights()
