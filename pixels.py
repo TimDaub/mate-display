@@ -12,8 +12,8 @@ class Pixels:
     def get_pixel(self, index):
         return self.data[index*6:index*6+6]
 
-    def set_display(self, display):
-        self.data = display
+    def set_data(self, data):
+        self.data = data
 
     def set_range(self, index, offset, color):
         self.data = self.data[:index] + color + self.data[offset:]
