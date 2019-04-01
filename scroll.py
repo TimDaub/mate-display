@@ -1,8 +1,10 @@
+import json
 from machine import Pin, SPI
 from display import Display
 from utime import sleep_us
+from text import Text
 
-def waves():
+def scroll(text):
     spi = SPI(
         1,
         baudrate=2000000,
@@ -12,13 +14,15 @@ def waves():
         mosi=Pin(16),
         sck=Pin(17)
     )
-    sleep_us(200000)
-    color = "f141f4"
 
     d = Display(spi, 4, 5)
-    for i in range(0, 20):
-        d.set_row(i % 4, color)
-        #d.set_col(i % 5, color)
-        d.show()
-        sleep_us(200000)
-        d.clear()
+    t = Text(d, text)
+    t.set_letter(0)
+    d.show()
+    sleep_us(1000000)
+    t.offset(1, 0)
+    d.show()
+    sleep_us(1000000)
+    t.offset(1, 0)
+    d.show()
+

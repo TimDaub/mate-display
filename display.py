@@ -6,7 +6,7 @@ class Display:
         self.h = h
         self.w = w
 
-    def set_pixel(self, x, y, color):
+    def get_pixel(self, x, y):
         # Our display is wired where odd rows go from left to right
         # and even rows go from right to left
         index = 0
@@ -14,6 +14,13 @@ class Display:
             index = x + self.w * y
         else:
             index = self.w * y + self.w - x - 1
+        return index
+
+    def get_color(self, x, y):
+        return self.p.get_pixel(self.get_pixel(x, y))
+
+    def set_pixel(self, x, y, color):
+        index = self.get_pixel(x, y)
         self.p.set_pixel(index, color) 
         self.p.show()
 

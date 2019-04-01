@@ -7,5 +7,8 @@
 #from iterate import iterative_lights
 #iterative_lights()
 
-from waves import waves
-waves()
+from font import dotmatrixtext 
+#dotmatrixtext("TIM")
+
+#from waves import waves
+#waves()

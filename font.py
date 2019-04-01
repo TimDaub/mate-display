@@ -9,8 +9,8 @@ def char_replace(string):
         dotfont = json.load(fh)
         for char in string:
             dotchar = dotfont[char.upper()]
-            dotstring = dotstring + dotchar[1:] + "....."
-    return(dotstring)
+            dotstring += dotchar
+    return dotstring
 
 def dotmatrixtext(text):
     spi = SPI(
@@ -22,18 +22,23 @@ def dotmatrixtext(text):
         mosi=Pin(16),
         sck=Pin(17)
     )
-    color = "f141f4"
 
     d = Display (spi, 4, 5)
     dotstring = char_replace(text)
-    i = 0
-    col = 0
-    row = 0
-    for char in dotstring:
-        col += 1
-        d.set_pixel(col, row, color)
-        if col == 4
-            row += 1
-            col = 0
-
-dotmatrixtext("A")
+    denominator = 25
+    chunks = [dotstring[i:i+denominator] for i in range(0, len(dotstring), denominator)]
+    for chunk in chunks:
+        col = 0
+        row = 0
+        for char in chunk:
+            if col == 5:
+                row += 1
+                col = 0
+            if char == "X":
+                d.set_pixel(col, row, 'f'*6)
+            else:
+                d.set_pixel(col, row, '0'*6)
+            col += 1
+        d.show()
+        sleep_us(2000000)
+        d.clear()
