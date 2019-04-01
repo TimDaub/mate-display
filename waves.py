@@ -15,7 +15,15 @@ def waves():
     sleep_us(200000)
     color = "f141f4"
 
-    d = Display(spi, 4, 5)
+    d = Display(spi, 8, 5)
     for i in range(0, 20):
+        d.set_row(i % d.w, color)
+        sleep_us(200000)
+        d.clear()
+
+    sleep_us(200000)
+
+    for j in range(0, 20):
+        d.set_col(j % d.h, color)
         sleep_us(200000)
         d.clear()

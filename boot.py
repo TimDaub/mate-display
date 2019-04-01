@@ -7,8 +7,11 @@
 #from iterate import iterative_lights
 #iterative_lights()
 
-from scroll import scroll
-scroll("TIM")
+#from scroll import scroll
+#scroll("TIM")
+
+from waves import waves
+waves()
 
 #from iterate import iterative_lights
 #iterative_lights()

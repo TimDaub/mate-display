@@ -33,19 +33,15 @@ class Display:
             if show:
                 self.p.show()
 
-    # NOTE: Probably outdated with rewiring
     def set_row(self, row, color, show=True):
-        # NOTE: We could do this with self.set_pixel
-        colors = color * self.w
-        offset = 6 * self.w
-        self.p.set_range(row * offset, row * offset + len(colors), colors)
+        for i in range(0, self.h):
+            self.set_pixel(row, i, color)
         if show:
             self.p.show()
 
-    # NOTE: Probably outdated with rewiring
     def set_col(self, col, color, show=True):
-        for i in range(0, self.h):
-            self.set_pixel(col, i, color)
+        for i in range(0, self.w):
+            self.set_pixel(i, col, color)
         if show:
             self.p.show()
 
