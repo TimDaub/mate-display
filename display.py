@@ -12,8 +12,12 @@ class Display:
         index = 0
         if y % 2 == 0:
             index = x + self.w * y
+            #rewiring from bottom left to top left:
+            #index = (self.w * self.h - 1) - (x + self.w * y)
         else:
             index = self.w * y + self.w - x - 1
+            #rewiring from bottom left to top left
+            #index = (self.w * self.h - 1) - (self.w * y + (self.w - x))
         return index
 
     def get_color(self, x, y):
