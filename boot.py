@@ -7,8 +7,8 @@
 #from iterate import iterative_lights
 #iterative_lights()
 
-from font import dotmatrixtext 
-#dotmatrixtext("TIM")
+from scroll import scroll
+scroll("HURENSOHN")
 
 #from waves import waves
 #waves()

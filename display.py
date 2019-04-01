@@ -19,10 +19,15 @@ class Display:
     def get_color(self, x, y):
         return self.p.get_pixel(self.get_pixel(x, y))
 
-    def set_pixel(self, x, y, color):
-        index = self.get_pixel(x, y)
-        self.p.set_pixel(index, color) 
-        self.p.show()
+    def set_pixel(self, x, y, color, show=True):
+        if x > self.w or x < 0 or y > self.h or y < 0:
+            # TODO: Make IndexValue error
+            raise Exception("Out of index")
+        else:
+            index = self.get_pixel(x, y)
+            self.p.set_pixel(index, color) 
+            if show:
+                self.p.show()
 
     def set_row(self, row, color, show=True):
         # NOTE: We could do this with self.set_pixel
@@ -37,6 +42,9 @@ class Display:
             self.set_pixel(col, i, color)
         if show:
             self.p.show()
+
+    def set_data(self, data):
+        self.p.set_data(data)
 
     def show(self):
         self.p.show()
