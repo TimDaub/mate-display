@@ -46,6 +46,7 @@ def colorsetter(steps):
         return rgb2hex(r, g, b)
 
 def colorpattern(distance, steps):
+    # steps has to be a divisor of 255
     PATTERN = [0, 1, 2, 3, 4, 4, 3, 2, 1, 1, 2, 2, 3, 4, 4, 5, 4, 4, 3, 3, 4, 4, 4, 5, 5, 6, 6, 5, 5, 5, 6, 6, 6, 6, 7, 8, 7, 7, 7, 7]
     spi = SPI(
         1,
@@ -65,7 +66,7 @@ def colorpattern(distance, steps):
                 colorflow = []
                 for n in range(0, distance):
                     colorflow.insert(n, colorsetter(steps))
-                colors.insert(i, colorflow)
+                colors.insert(0, colorflow)
         else:
             colorflow = []
             for n in range(0, distance):
