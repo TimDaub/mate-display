@@ -1,6 +1,47 @@
 <html>
+    <head>
+        <script>
+            function toQueryString(obj) {
+                if (!obj) {
+                    return "";
+                }
+                return Object.keys(obj).reduce(function(init, curr) {
+                    if (init === "?") {
+                        return init + curr + "=" + obj[curr];
+                    } else {
+                        return init + "&" + curr + "=" + obj[curr];
+                    }
+                }, "?");
+            }
+
+            function get(path, obj) {
+                var params = toQueryString(obj)
+
+                var Http = new XMLHttpRequest();
+                var url= path + params;
+                Http.open("GET", url);
+                Http.send();
+                Http.onreadystatechange=(e)=>{
+                    console.log(Http.responseText)
+                }
+            }
+
+            function trigger(program) {
+                var params = {
+                    program: program
+                };
+                get("rpc", params);
+            }
+
+            function cancel() {
+                get("cancel")
+            }
+        </script>
+    </head>
     <body>
         <h1>Mate Display</h1>
+        <button onclick="trigger('sin')">Sin Wave</button>
+        <button onclick="cancel()">Clear</button>
         <img src="qr.png" alt="site"/>
     </body>
 </html>

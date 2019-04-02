@@ -1,5 +1,8 @@
 import usocket as socket
 import os
+import _thread
+
+from sin import sin_wave
 
 files = {
     "html": "text/html",
@@ -39,6 +42,7 @@ Content-Length: {content_length}
         client_addr = res[1]
         req = client_s.recv(4096)
         parts = req.decode('ascii').split(' ')
+        print(parts)
         path = parts[1]
 
         if path == '/off':
@@ -51,7 +55,17 @@ Content-Length: {content_length}
 
             client_s.send(bytes(content + "Webserver shutting down", "ascii"))
             client_s.close()
-            break
+            continue
+        elif "/rpc" in path:
+            _thread.start_new_thread(sin_wave, (100, 100000))
+            client_s.send(bytes("OK", "ascii"))
+            client_s.close()
+            continue
+        elif path == "/cancel":
+            pill = True
+            client_s.send(bytes("OK", "ascii"))
+            client_s.close()
+            continue
         else:
             name = path[1:]
             
