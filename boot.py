@@ -1,5 +1,6 @@
 import network
 import json
+import _thread
 
 from server import serve
 
@@ -29,4 +30,5 @@ def boot():
         config["WIFI"]["pw"],
         config["hostname"]
     )
-    serve(params[0])
+
+    _thread.start_new_thread(serve, (params[0], ))

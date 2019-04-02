@@ -1,6 +1,7 @@
 import usocket as socket
 import os
 import _thread
+from utime import sleep_us
 
 from sin import sin_wave
 
@@ -10,6 +11,7 @@ files = {
 }
 
 binary = ["png"]
+pill = False
 
 def load(path, ending):
     mode = ""
@@ -37,12 +39,13 @@ Content-Length: {content_length}
     s.listen(5)
 
     while True:
+        pill = False
         res = s.accept()
         client_s = res[0]
         client_addr = res[1]
         req = client_s.recv(4096)
         parts = req.decode('ascii').split(' ')
-        print(parts)
+        #print(parts)
         path = parts[1]
 
         if path == '/off':
@@ -57,12 +60,13 @@ Content-Length: {content_length}
             client_s.close()
             continue
         elif "/rpc" in path:
+            # start new thread
             _thread.start_new_thread(sin_wave, (100, 100000))
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
         elif path == "/cancel":
-            pill = True
+            # Not sure how to kill a thread in micropython :/
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue

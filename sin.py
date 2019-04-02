@@ -4,11 +4,6 @@ from utime import sleep_us
 from math import sin
 from urandom import randint
 
-pill = False
-
-def set_pill(p):
-    pill = p
-
 # sin_wave(100, 100000) is nice
 def sin_wave(iterations, rate):
     spi = SPI(
@@ -25,9 +20,6 @@ def sin_wave(iterations, rate):
 
     d = Display(spi, 8, 5)
     for offset in range(iterations):
-        if pill:
-            break
-
         d.clear()
         for y in range(d.h):
             x = normalize(sin(y+offset), 0, 2) + 1
@@ -35,7 +27,6 @@ def sin_wave(iterations, rate):
 
         d.show()
         sleep_us(rate)
-
 
 def normalize(x, minimum, maximum):
     sin_min = -1
