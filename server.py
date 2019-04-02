@@ -1,14 +1,29 @@
 import usocket as socket
+import os
 
-def load(path):
-    with open(path, 'r') as content_file:
+files = {
+    "html": "text/html",
+    "png": "image/png"
+}
+
+binary = ["png"]
+
+def load(path, ending):
+    mode = ""
+    if ending in binary:
+        mode = "rb"
+    else:
+        mode = "r"
+        
+    with open(path, mode) as content_file:
             return content_file.read()
 
 def serve(ip):
     HEADER = """\
-    HTTP/1.1 200 OK
-    Server: tims_fun_server
-    Content-Type: text/html
+HTTP/1.1 {status} {code}
+Server: tims_fun_server
+Content-Type: {content_type}
+Content-Length: {content_length}
 
     """
     ai = socket.getaddrinfo(ip,80)
@@ -28,16 +43,72 @@ def serve(ip):
 
         if path == '/off':
             # To power down the web server call /off
-            client_s.send(bytes(HEADER + "Webserver shutting down", "ascii"))
+            content = HEADER.format(
+                status="OK",
+                code="200",
+                content_type="text/html"
+            )
+
+            client_s.send(bytes(content + "Webserver shutting down", "ascii"))
             client_s.close()
             break
-        elif path == "/":
-            f = load("public/index.html")
-            client_s.send(bytes(HEADER + f, "ascii"))
-            client_s.close()
         else:
-            # change status code
-            client_s.send(bytes(HEADER + "Not found", "ascii"))
-            client_s.close()
+            name = path[1:]
+            
+            if not name:
+                name = "index.html"
 
-        
+            ending = ""
+            try:
+                ending = name.split(".")[1]
+            except IndexError:
+                content = HEADER.format(
+                    status="BAD REQUEST",
+                    code="400",
+                    content_type="text/html",
+                    content_length="0"
+                )
+                client_s.send(bytes(content, "ascii"))
+                client_s.close()
+                continue
+
+            mimetype = ""
+            try:
+                mimetype = files[ending]
+            except KeyError:
+                content = HEADER.format(
+                    status="NOT FOUND",
+                    code="404",
+                    content_type="text/html",
+                    content_length="0"
+                )
+                client_s.send(bytes(content, "ascii"))
+                client_s.close()
+                continue
+                                            
+            try:
+                f = load("public/"+name, ending)
+            except:
+                content = HEADER.format(
+                    status="NOT FOUND",
+                    code="404",
+                    content_type="text/html",
+                    content_length="0"
+                )
+                client_s.send(bytes(content + "Not found", "ascii"))
+                client_s.close()
+                continue
+            else:
+                content = HEADER.format(
+                    status="OK",
+                    code="200",
+                    content_type=mimetype,
+                    content_length=os.stat("public/"+name)[6]
+                )
+                if ending in binary:
+                    content = f
+                else:
+                    content = bytes(content + f, "ascii")
+                client_s.send(content) 
+                client_s.close()
+                continue
