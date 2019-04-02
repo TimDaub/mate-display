@@ -85,6 +85,13 @@ while(True):
   sleep_us(200000)
 ```
 
+## Use as webserver and control programs from webserver
+
+```bash
+$ mv config.example.json config.json
+# Change WIFI credentials to yours
+```
+
 ## Tips
 
 - Don't use while loops in any .py file. You'll have to reflash the esp32 as you will not be able to write files to it anymore. It's busy executing the while loop.

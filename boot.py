@@ -1,20 +1,22 @@
-# This file is executed on every boot (including wake-boot from deepsleep)
-#import esp
-#esp.osdebug(None)
-#import webrepl
-#webrepl.start()
+import network
+import json
 
-#from iterate import iterative_lights
-#iterative_lights()
+def connect(name, pw):
+    sta_if = network.WLAN(network.STA_IF)
+    if not sta_if.isconnected():
+        print('connecting to network...')
+        sta_if.active(True)
+        sta_if.connect(name, pw)
+        while not sta_if.isconnected():
+            pass
+    print('network config:', sta_if.ifconfig())
 
-#from scroll import scroll
-#scroll("TIM")
+def load_config():
+    with open('config.json') as json_file:
+        return json.load(json_file)
 
-#from waves import waves
-#waves()
+def boot():
+    config = load_config()
+    connect(config["WIFI"]["name"], config["WIFI"]["pw"])
 
-from sound import sound
-sound()
-
-#from iterate import iterative_lights
-#iterative_lights()
+boot()
