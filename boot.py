@@ -1,7 +1,3 @@
-import network
-import json
-import _thread
-
 from server import serve
 
 def connect(name, pw, hostname):
@@ -17,7 +13,6 @@ def connect(name, pw, hostname):
     params = sta_if.ifconfig()
     print('network config:', params)
     return params
-
 
 def load_config():
     with open('config.json') as json_file:
