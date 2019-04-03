@@ -11,7 +11,8 @@ files = {
 }
 
 binary = ["png"]
-pill = False
+
+program = {"run": True}
 
 def load(path, ending):
     mode = ""
@@ -39,14 +40,19 @@ Content-Length: {content_length}
     s.listen(5)
 
     while True:
-        pill = False
         res = s.accept()
         client_s = res[0]
         client_addr = res[1]
         req = client_s.recv(4096)
         parts = req.decode('ascii').split(' ')
         print(parts)
-        path = parts[1]
+
+        try:
+            path = parts[1]
+        except IndexError:
+            # NOTE: I'm not sure how to handle this and when these requests
+            # happen
+            continue
 
         if path == '/off':
             # To power down the web server call /off
@@ -61,12 +67,14 @@ Content-Length: {content_length}
             continue
         elif "/rpc" in path:
             # start new thread
-            _thread.start_new_thread(sin_wave, (100, 100000))
+            program["run"] = True
+            _thread.start_new_thread(sin_wave, (program, 10000))
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
         elif path == "/cancel":
             # Not sure how to kill a thread in micropython :/
+            program["run"] = False
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue

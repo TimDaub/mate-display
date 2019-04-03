@@ -21,6 +21,7 @@ class Pixels:
     def show(self):
         self.spi.write(unhexlify(self.data))
 
-    def clear(self):
+    def clear(self, show=True):
         self.data = '000000' * self.leds
-        self.spi.write(unhexlify(self.data))
+        if show:
+            self.spi.write(unhexlify(self.data))
