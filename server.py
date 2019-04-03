@@ -26,17 +26,14 @@ def load(path, ending):
             return content_file.read()
 
 def query_string_to_dict(query):
-    search = ure.search(r'\/(rpc)\?(\w+)=(\w+)(&(\w+)=(\w+))*', query)
-    i = 2
+    # This doesn't work with micropython :( as it doesn't have re.findall
+    # search = ure.search(r'\/rpc\?(\w+)=(\w+)(&(\w+)=(\w+))*', query)
+    re = ure.compile(r'[\?&]')
+    query = re.split(query)
     d = {}
-    while True:
-        try:
-            key = search.group(i)
-            value = search.group(i+1)
-            d[key] = value
-        except IndexError:
-            break
-        i += 1
+    for i in range(1, len(query)):
+        [key, value] = query[i].split("=")
+        d[key] = value
     return d
         
 def serve(ip):
