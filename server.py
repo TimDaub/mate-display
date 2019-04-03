@@ -4,6 +4,7 @@ import _thread
 from utime import sleep_us
 import sys
 import ure
+import gc
 
 files = {
     "html": "text/html",
@@ -93,6 +94,7 @@ Content-Length: {content_length}
         elif path == "/cancel":
             # Not sure how to kill a thread in micropython :/
             program["run"] = False
+            gc.collect()
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
