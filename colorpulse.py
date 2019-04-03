@@ -11,7 +11,7 @@ b = 0
 h = 8
 w = 5
 
-def colorpattern(program):
+def main(program):
     distance = program["distance"]
     steps = program["steps"]
     # steps has to be a divisor of 255
