@@ -2,8 +2,8 @@ import usocket as socket
 import os
 import _thread
 from utime import sleep_us
-
-from sin import sin_wave
+import sys
+import ure
 
 files = {
     "html": "text/html",
@@ -24,6 +24,20 @@ def load(path, ending):
     with open(path, mode) as content_file:
             return content_file.read()
 
+def query_string_to_dict(query):
+    search = ure.search(r'\/(rpc)\?(\w+)=(\w+)(&(\w+)=(\w+))*', query)
+    i = 2
+    d = {}
+    while True:
+        try:
+            key = search.group(i)
+            value = search.group(i+1)
+            d[key] = value
+        except IndexError:
+            break
+        i += 1
+    return d
+        
 def serve(ip):
     HEADER = """\
 HTTP/1.1 {code} {status}
@@ -66,9 +80,13 @@ Content-Length: {content_length}
             client_s.close()
             continue
         elif "/rpc" in path:
-            # start new thread
+            program = query_string_to_dict(path)
             program["run"] = True
-            _thread.start_new_thread(sin_wave, (program, 10000))
+
+            name = program["program"]
+            exec('import ' + name, {} )
+
+            _thread.start_new_thread(sys.modules[name].main, (program, ))
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
