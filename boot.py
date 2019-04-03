@@ -1,20 +1,34 @@
-# This file is executed on every boot (including wake-boot from deepsleep)
-#import esp
-#esp.osdebug(None)
-#import webrepl
-#webrepl.start()
+import network
+import json
+import _thread
 
-#from iterate import iterative_lights
-#iterative_lights()
+from server import serve
 
-#from scroll import scroll
-#scroll("TIM")
+def connect(name, pw, hostname):
+    sta_if = network.WLAN(network.STA_IF)
+    if not sta_if.isconnected():
+        print('connecting to network...')
+        sta_if.active(True)
+        print("Setting hostname to", hostname)
+        sta_if.config(dhcp_hostname=hostname)
+        sta_if.connect(name, pw)
+        while not sta_if.isconnected():
+            pass
+    params = sta_if.ifconfig()
+    print('network config:', params)
+    return params
 
-#from waves import waves
-#waves()
 
-from sound import sound
-sound()
+def load_config():
+    with open('config.json') as json_file:
+        return json.load(json_file)
 
-#from iterate import iterative_lights
-#iterative_lights()
+def boot():
+    config = load_config()
+    params = connect(
+        config["WIFI"]["name"],
+        config["WIFI"]["pw"],
+        config["hostname"]
+    )
+
+    _thread.start_new_thread(serve, (params[0], ))

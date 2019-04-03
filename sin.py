@@ -28,7 +28,6 @@ def sin_wave(iterations, rate):
         d.show()
         sleep_us(rate)
 
-
 def normalize(x, minimum, maximum):
     sin_min = -1
     sin_max = 1
