@@ -1,4 +1,8 @@
+import json
+import network
+import _thread
 from server import serve
+
 
 def connect(name, pw, hostname):
     sta_if = network.WLAN(network.STA_IF)

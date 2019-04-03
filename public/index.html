@@ -28,7 +28,7 @@
 
             function parseInputs(program) {
                 var inputs = document.querySelectorAll(
-                    'input[data-program="sin"]'
+                    '*[data-program="'+program+'"]'
                 );
                 // convert NodeList to array
                 inputs = Array.prototype.slice.call(inputs);
