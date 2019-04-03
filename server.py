@@ -25,12 +25,12 @@ def load(path, ending):
 
 def serve(ip):
     HEADER = """\
-HTTP/1.1 {status} {code}
+HTTP/1.1 {code} {status}
 Server: tims_fun_server
 Content-Type: {content_type}
 Content-Length: {content_length}
 
-    """
+"""
     ai = socket.getaddrinfo(ip,80)
     addr = ai[0][4]
 
@@ -45,7 +45,7 @@ Content-Length: {content_length}
         client_addr = res[1]
         req = client_s.recv(4096)
         parts = req.decode('ascii').split(' ')
-        #print(parts)
+        print(parts)
         path = parts[1]
 
         if path == '/off':
