@@ -28,7 +28,7 @@
 
             function parseInputs(program) {
                 var inputs = document.querySelectorAll(
-                    'input[data-program="'+program+'"]'
+                    '*[data-program="'+program+'"]'
                 );
                 // convert NodeList to array
                 inputs = Array.prototype.slice.call(inputs);
@@ -63,5 +63,24 @@
         <button onclick="trigger('sin')">Sin Wave</button>
         <button onclick="cancel()">Clear</button>
         <img src="qr.png" alt="site"/>
+        <p>
+          <button onclick="trigger('sin')">Sin Wave</button>
+          <button onclick="cancel()">Clear</button>
+        </p>
+        <p>
+          <button onclick="trigger('colorpulse')">Colorpattern</button>
+          <input data-key="distance" data-program='colorpulse' type="number" min="1" max="50">
+          <select data-key="steps" data-program="colorpulse">
+            <option value="1">srsly slow</option>
+            <option value="3">slow</option>
+            <option value="5">chill</option>
+            <option value="15">avg</option>
+            <option value="51">fast</option>
+            <option value="85">wild</option>
+          </select>
+        </p>
+        </br>
+
+
     </body>
 </html>
