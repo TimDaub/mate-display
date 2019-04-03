@@ -12,8 +12,8 @@ h = 8
 w = 5
 
 def main(program):
-    distance = program["distance"]
-    steps = program["steps"]
+    distance = int(program["distance"])
+    steps = int(program["steps"])
     # steps has to be a divisor of 255
     global r
     global b
