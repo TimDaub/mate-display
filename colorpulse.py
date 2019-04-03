@@ -11,7 +11,9 @@ b = 0
 h = 8
 w = 5
 
-def colorpattern(distance, steps):
+def colorpattern(program):
+    distance = program["distance"]
+    steps = program["steps"]
     # steps has to be a divisor of 255
     global r
     global b
@@ -39,7 +41,7 @@ def colorpattern(distance, steps):
     )
     d = Display(spi, h, w)
     colors = []
-    while True:
+    while program["run"]:
         if not colors:
             for i in range(0, (max(pattern)+1)):
                 # init fill
