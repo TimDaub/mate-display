@@ -5,7 +5,7 @@ from math import sin
 from urandom import randint
 
 # sin_wave(100, 100000) is nice
-def sin_wave(iterations, rate):
+def sin_wave(program, rate):
     spi = SPI(
         1,
         baudrate=2000000,
@@ -19,12 +19,14 @@ def sin_wave(iterations, rate):
     color = '%02x%02x%02x' % (randint(0, 254), randint(0, 254), randint(0, 254))
 
     d = Display(spi, 8, 5)
-    for offset in range(iterations):
-        d.clear()
+    offset = 0
+    while program["run"]:
+        d.clear(False)
         for y in range(d.h):
             x = normalize(sin(y+offset), 0, 2) + 1
             d.set_pixel(x, y, color, False)
 
+        offset += 1
         d.show()
         sleep_us(rate)
 

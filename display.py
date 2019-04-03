@@ -51,6 +51,6 @@ class Display:
     def show(self):
         self.p.show()
 
-    def clear(self):
-        self.p.clear()
+    def clear(self, show):
+        self.p.clear(show)
 

@@ -27,6 +27,7 @@
             }
 
             function trigger(program) {
+                var inputs = document.querySelector('input[data-program="sin"]')
                 var params = {
                     program: program
                 };
@@ -40,6 +41,7 @@
     </head>
     <body>
         <h1>Mate Display</h1>
+        <input type="number" placeholder="10000" data-program="sin"/>
         <button onclick="trigger('sin')">Sin Wave</button>
         <button onclick="cancel()">Clear</button>
         <img src="qr.png" alt="site"/>
