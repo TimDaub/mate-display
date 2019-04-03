@@ -26,11 +26,25 @@
                 }
             }
 
+            function parseInputs(program) {
+                var inputs = document.querySelectorAll(
+                    'input[data-program="sin"]'
+                );
+                // convert NodeList to array
+                inputs = Array.prototype.slice.call(inputs);
+
+                params = inputs.reduce(function(init, curr) {
+                    var key = curr.getAttribute("data-key");
+                    var value = curr.value;
+                    init[key] = value;
+                    return init;
+                }, {program: program})
+
+                return params
+            }
+
             function trigger(program) {
-                var inputs = document.querySelector('input[data-program="sin"]')
-                var params = {
-                    program: program
-                };
+                var params = parseInputs(program);
                 get("rpc", params);
             }
 
@@ -41,7 +55,11 @@
     </head>
     <body>
         <h1>Mate Display</h1>
-        <input type="number" placeholder="10000" data-program="sin"/>
+        <input
+            type="number"
+            placeholder="10000"
+            data-program="sin"
+            data-key="rate"/>
         <button onclick="trigger('sin')">Sin Wave</button>
         <button onclick="cancel()">Clear</button>
         <img src="qr.png" alt="site"/>
