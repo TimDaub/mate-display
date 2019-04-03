@@ -19,7 +19,7 @@ def colorpattern(distance, steps):
     r = 255
     g = 0
     b = 0
-    pattern2 = [0, 1, 2, 3, 4,
+    pattern = [0, 1, 2, 3, 4,
                4, 3, 2, 1, 1,
                2, 2, 3, 4, 4,
                5, 4, 4, 3, 3,
@@ -27,16 +27,6 @@ def colorpattern(distance, steps):
                6, 6, 5, 5, 5,
                6, 6, 6, 6, 7,
                8, 7, 7, 7, 7]
-
-    pattern = [0, 1, 2, 3, 4,
-               4, 3, 2, 1, 0,
-               0, 1, 2, 3, 4,
-               4, 3, 2, 1, 0,
-               0, 1, 2, 3, 4,
-               4, 3, 2, 1, 0,
-               0, 1, 2, 3, 4,
-               4, 3, 2, 1, 0,
-               ]
 
     spi = SPI(
         1,
@@ -66,7 +56,7 @@ def colorpattern(distance, steps):
         for i in range(0, distance):
             display = ""
             roundindex = i
-            for n in range(0, len(pattern)):
+            for n in range(0, 40):
                 patternindex = pattern[n]
                 display += colors[patternindex][roundindex]
                 d.set_data(display)
