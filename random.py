@@ -4,7 +4,7 @@ from glow import Glow
 from utime import sleep_us
 from urandom import randint
 
-def random():
+def random(iterations, factor):
     spi = SPI(
         1,
         baudrate=2000000,
@@ -19,4 +19,10 @@ def random():
 
     d = Display(spi, 8, 5)
     g = Glow(d)
-    g.set_pixel(0, 0, 0, 255, 0)
+
+    pixels = []
+    for i in range(iterations):
+        if randint(0, 100) % factor == 0:
+            g.set_pixel(randint(0, d.w-1), randint(0, d.h-1))
+        g.tick()
+        sleep_us(1)
