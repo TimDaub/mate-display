@@ -6,15 +6,6 @@ import sys
 import ure
 import gc
 
-files = {
-    "html": "text/html",
-    "png": "image/png"
-}
-
-binary = ["png"]
-
-program = {"run": True}
-
 def load(path, ending):
     mode = ""
     if ending in binary:
@@ -44,7 +35,14 @@ Content-Type: {content_type}
 Content-Length: {content_length}
 
 """
-    ai = socket.getaddrinfo(ip,80)
+    files = {
+        "html": "text/html",
+        "png": "image/png"
+    }
+
+    binary = ["png"]
+    program = {"run": True}
+    ai = socket.getaddrinfo(ip, 80)
     addr = ai[0][4]
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

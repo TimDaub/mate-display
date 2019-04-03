@@ -31,4 +31,6 @@ def boot():
         config["hostname"]
     )
 
-    _thread.start_new_thread(serve, (params[0], ))
+    serve(params[0])
+
+_thread.start_new_thread(boot, ())
