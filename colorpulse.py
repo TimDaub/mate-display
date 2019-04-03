@@ -3,12 +3,12 @@ from display import Display
 from pixels import Pixels
 from utime import sleep_us
 
-def rgb2hex(r, g, b):
-    return '%02x%02x%02x' % (r, g, b)
-
 r = 255
 g = 0
 b = 0
+
+def rgb2hex(r, g, b):
+    return '%02x%02x%02x' % (r, g, b)
 
 def colorsetter(steps):
     global r
@@ -45,8 +45,15 @@ def colorsetter(steps):
         g -= steps
         return rgb2hex(r, g, b)
 
+
 def colorpattern(distance, steps):
     # steps has to be a divisor of 255
+    global r
+    global b
+    global g
+    r = 255
+    g = 0
+    b = 0
     PATTERN = [0, 1, 2, 3, 4, 4, 3, 2, 1, 1, 2, 2, 3, 4, 4, 5, 4, 4, 3, 3, 4, 4, 4, 5, 5, 6, 6, 5, 5, 5, 6, 6, 6, 6, 7, 8, 7, 7, 7, 7]
     spi = SPI(
         1,
