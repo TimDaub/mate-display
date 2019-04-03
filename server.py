@@ -1,10 +1,12 @@
 import usocket as socket
 import os
 import _thread
-from utime import sleep_us
 import sys
 import ure
 import gc
+from utime import sleep_us
+
+from clear import main as clear
 
 files = {
     "html": "text/html",
@@ -13,7 +15,6 @@ files = {
 
 binary = ["png"]
 
-program = {"run": True}
 
 def load(path, ending):
     mode = ""
@@ -35,6 +36,10 @@ def query_string_to_dict(query):
         [key, value] = query[i].split("=")
         d[key] = value
     return d
+
+def kill():
+    # Stop program
+    sleep_us(1)
         
 def serve(ip):
     HEADER = """\
@@ -44,6 +49,7 @@ Content-Type: {content_type}
 Content-Length: {content_length}
 
 """
+    program = {"run": True}
     ai = socket.getaddrinfo(ip,80)
     addr = ai[0][4]
 
@@ -78,19 +84,25 @@ Content-Length: {content_length}
             client_s.close()
             continue
         elif "/rpc" in path:
+            # Kill old program
+            program["run"] = False
+            gc.collect()
+
+            # Launch new program
             program = query_string_to_dict(path)
             program["run"] = True
 
             name = program["program"]
             exec('import ' + name, {} )
 
+            clear()
             _thread.start_new_thread(sys.modules[name].main, (program, ))
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
         elif path == "/cancel":
-            # Stop program
             program["run"] = False
+            clear()
             gc.collect()
             client_s.send(bytes("OK", "ascii"))
             client_s.close()

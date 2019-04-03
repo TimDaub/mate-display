@@ -64,6 +64,7 @@ def main(program):
                 d.set_data(display)
                 d.show()
         #sleep_us(1000000)
+    d.clear()
 
 def rgb2hex(r, g, b):
     return '%02x%02x%02x' % (r, g, b)

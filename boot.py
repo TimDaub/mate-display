@@ -1,7 +1,9 @@
 import json
 import network
 import _thread
+
 from server import serve
+from clear import main as clear
 
 def connect(name, pw, hostname):
     sta_if = network.WLAN(network.STA_IF)
@@ -9,7 +11,7 @@ def connect(name, pw, hostname):
         print('connecting to network...')
         sta_if.active(True)
         #print("Setting hostname to", hostname)
-        # NOTE: As this buggy seems to brick the boot, we now set the host
+        # NOTE: As this function seems to brick the boot, we now set the host
         # name manually in the fritz.box
         #sta_if.config(dhcp_hostname=hostname)
         sta_if.connect(name, pw)
@@ -31,4 +33,7 @@ def boot():
         config["hostname"]
     )
 
+    clear()
     _thread.start_new_thread(serve, (params[0], ))
+
+boot()
