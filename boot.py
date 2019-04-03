@@ -8,8 +8,10 @@ def connect(name, pw, hostname):
     if not sta_if.isconnected():
         print('connecting to network...')
         sta_if.active(True)
-        print("Setting hostname to", hostname)
-        sta_if.config(dhcp_hostname=hostname)
+        #print("Setting hostname to", hostname)
+        # NOTE: As this buggy seems to brick the boot, we now set the host
+        # name manually in the fritz.box
+        #sta_if.config(dhcp_hostname=hostname)
         sta_if.connect(name, pw)
         while not sta_if.isconnected():
             pass

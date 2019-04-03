@@ -89,7 +89,7 @@ Content-Length: {content_length}
             client_s.close()
             continue
         elif path == "/cancel":
-            # Not sure how to kill a thread in micropython :/
+            # Stop program
             program["run"] = False
             gc.collect()
             client_s.send(bytes("OK", "ascii"))
