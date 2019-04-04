@@ -3,9 +3,9 @@ from display import Display
 from utime import sleep_us
 from math import sin
 from urandom import randint
+import _thread
 
-# sin_wave(100, 100000) is nice
-def sin_wave(program, rate):
+def main(program):
     spi = SPI(
         1,
         baudrate=2000000,
@@ -15,7 +15,6 @@ def sin_wave(program, rate):
         mosi=Pin(16),
         sck=Pin(17)
     )
-    sleep_us(200000)
     color = '%02x%02x%02x' % (randint(0, 254), randint(0, 254), randint(0, 254))
 
     d = Display(spi, 8, 5)
@@ -28,7 +27,10 @@ def sin_wave(program, rate):
 
         offset += 1
         d.show()
-        sleep_us(rate)
+        sleep_us(int(program["rate"]))
+
+    d.clear()
+    _thread.exit()
 
 def normalize(x, minimum, maximum):
     sin_min = -1

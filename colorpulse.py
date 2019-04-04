@@ -12,8 +12,8 @@ h = 8
 w = 5
 
 def main(program):
-    distance = program["distance"]
-    steps = program["steps"]
+    distance = int(program["distance"])
+    steps = int(program["steps"])
     # steps has to be a divisor of 255
     global r
     global b
@@ -64,6 +64,7 @@ def main(program):
                 d.set_data(display)
                 d.show()
         #sleep_us(1000000)
+    d.clear()
 
 def rgb2hex(r, g, b):
     return '%02x%02x%02x' % (r, g, b)
