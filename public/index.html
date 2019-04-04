@@ -54,9 +54,19 @@
         </script>
     </head>
     <body>
-        <h1>Mate Display</h1>
+      <h1>Mate Display</h1>
+      <img src="qr.png" alt="site"/>
+      <p>
+        <button onclick="cancel()">Clear</button>
+      </p>
+      <p>
+        <b>Sin wave ~ </b>
+        <button onclick="trigger('sin')">Start!</button>
+      </br>
+        Sleep time:
         <input
             type="number"
+<<<<<<< HEAD
             placeholder="sleep time  e.g. 20000"
             data-program="sin"
             data-key="rate"/>
@@ -84,8 +94,41 @@
           <button onclick="trigger('random')">Random colors</button>
           <input placeholder="5" data-key="probability" data-program='random' type="number">
         </p>
+=======
+            placeholder="e.g. 20000"
+            data-program="sin"
+            data-key="rate"/>
+      </p>
+      <p>
+        <b>Colorpattern ~ </b>
+        <button onclick="trigger('colorpulse')">Start!</button>
+      </br>
+        Distance:
+        <input
+          type="number"
+          placeholder="from 1 to 50"
+          data-program='colorpulse'
+          data-key="distance"
+          min="1"
+          max="50">
+>>>>>>> changed buttons
         </br>
-
-
+        Speed:
+        <select data-key="steps" data-program="colorpulse">
+          <option value="1">ambient</option>
+          <option value="5">chill</option>
+          <option value="15">avg</option>
+          <option value="51">fast</option>
+          <option value="85">wild</option>
+        </select>
+      </p>
+      <p>
+        <b>Scroll text ~ </b>
+        <button onclick="trigger('scroll')">Start!</button>
+        </br>
+        Text:
+        <input data-key="text" data-program='scroll' type="text">
+      </p>
+      </br>
     </body>
 </html>
