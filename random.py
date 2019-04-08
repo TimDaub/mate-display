@@ -17,7 +17,7 @@ def random(iterations, factor):
     sleep_us(200000)
     color = "f"*6
 
-    d = Display(spi, 8, 5)
+    d = Display(spi, 12, 5)
     g = Glow(d)
 
     pixels = []
