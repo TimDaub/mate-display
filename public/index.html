@@ -66,39 +66,12 @@
         Sleep time:
         <input
             type="number"
-<<<<<<< HEAD
             placeholder="sleep time  e.g. 20000"
             data-program="sin"
             data-key="rate"/>
         <button onclick="trigger('sin')">Sin Wave</button>
         <button onclick="cancel()">Clear</button>
         <img src="qr.png" alt="site"/>
-        <p>
-          <button onclick="trigger('colorpulse')">Colorpattern</button>
-          <input data-key="distance" data-program='colorpulse' type="number" min="1" max="50">
-          <select data-key="steps" data-program="colorpulse">
-            <option value="1">srsly slow</option>
-            <option value="3">slow</option>
-            <option value="5">chill</option>
-            <option value="15">avg</option>
-            <option value="51">fast</option>
-            <option value="85">wild</option>
-          </select>
-        </p>
-        <p>
-          <button onclick="trigger('scroll')">Scroll text</button>
-          <input data-key="text" data-program='scroll' type="text">
-          <input placeholder="10000" data-key="speed" data-program='scroll' type="number">
-        </p>
-        <p>
-          <button onclick="trigger('random')">Random colors</button>
-          <input placeholder="5" data-key="probability" data-program='random' type="number">
-        </p>
-=======
-            placeholder="e.g. 20000"
-            data-program="sin"
-            data-key="rate"/>
-      </p>
       <p>
         <b>Colorpattern ~ </b>
         <button onclick="trigger('colorpulse')">Start!</button>
@@ -111,7 +84,6 @@
           data-key="distance"
           min="1"
           max="50">
->>>>>>> changed buttons
         </br>
         Speed:
         <select data-key="steps" data-program="colorpulse">
@@ -128,6 +100,11 @@
         </br>
         Text:
         <input data-key="text" data-program='scroll' type="text">
+      </p>
+      <p>
+        <b>Random Stars ~ </b>
+        <input placeholder="5" data-key="probability" data-program='random' type="number">
+        <button onclick="trigger('random')">Start!</button>
       </p>
       </br>
     </body>

@@ -16,7 +16,7 @@ def main(program):
     )
     sleep_us(200000)
 
-    d = Display(spi, 8, 5)
+    d = Display(spi, 12, 5)
     g = Glow(d)
 
     pixels = []
