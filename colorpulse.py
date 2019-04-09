@@ -7,10 +7,6 @@ r = 255
 g = 0
 b = 0
 
-#display
-h = 8
-w = 5
-
 def main(program):
     distance = int(program["distance"])
     steps = int(program["steps"])
@@ -39,7 +35,7 @@ def main(program):
         mosi=Pin(16),
         sck=Pin(17)
     )
-    d = Display(spi, h, w)
+    d = Display(spi, program["display"]["height"], program["display"]["width"])
     colors = []
     while program["run"]:
         if not colors:

@@ -34,6 +34,6 @@ def boot():
     )
 
     clear()
-    _thread.start_new_thread(serve, (params[0], ))
+    _thread.start_new_thread(serve, (params[0], config["display"]))
 
 boot()

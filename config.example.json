@@ -3,5 +3,9 @@
         "name": "Wifi name",
         "pw": "password"
     },
-    "hostname": "display"
+    "hostname": "display",
+    "display": {
+        "height": 12,
+        "width": 5
+    }
 }

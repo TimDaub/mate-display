@@ -17,7 +17,7 @@ def main(program):
     )
     color = '%02x%02x%02x' % (randint(0, 254), randint(0, 254), randint(0, 254))
 
-    d = Display(spi, 12, 5)
+    d = Display(spi, program["display"]["height"], program["display"]["width"])
     offset = 0
     while program["run"]:
         d.clear(False)

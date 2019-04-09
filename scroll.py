@@ -16,8 +16,7 @@ def main(program):
         sck=Pin(17)
     )
 
-    d = Display(spi, 12, 5)
-    #t = Text(d, program["text"])
+    d = Display(spi, program["display"]["height"], program["display"]["width"])
     t =  Text(d, program["text"])
     t.scroll(1, int(program["speed"]))
     _thread.exit()
