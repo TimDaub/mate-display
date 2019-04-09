@@ -1,7 +1,5 @@
-import json
 from machine import Pin, SPI
 from display import Display
-from utime import sleep_us
 from text import Text
 import _thread
 
