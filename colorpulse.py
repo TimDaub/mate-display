@@ -57,10 +57,8 @@ def main(program):
         colors = colors[0:(max(pattern)+1)]
         for i in range(0, distance):
             display = ""
-            roundindex = i
-            for n in range(0, 40):
-                patternindex = pattern[n]
-                display += colors[patternindex][roundindex]
+            for n in range(0, len(pattern)):
+                display += colors[pattern[n]][i]
                 d.set_data(display)
                 d.show()
         #sleep_us(1000000)

@@ -69,9 +69,6 @@
             placeholder="sleep time  e.g. 20000"
             data-program="sin"
             data-key="rate"/>
-        <button onclick="trigger('sin')">Sin Wave</button>
-        <button onclick="cancel()">Clear</button>
-        <img src="qr.png" alt="site"/>
       <p>
         <b>Colorpattern ~ </b>
         <button onclick="trigger('colorpulse')">Start!</button>
@@ -103,8 +100,10 @@
       </p>
       <p>
         <b>Random Stars ~ </b>
-        <input placeholder="5" data-key="probability" data-program='random' type="number">
         <button onclick="trigger('random')">Start!</button>
+        </br>
+        Probability:
+        <input placeholder="5" data-key="probability" data-program='random' type="number">
       </p>
       </br>
     </body>
