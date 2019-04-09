@@ -16,7 +16,7 @@ def main(program):
         sck=Pin(17)
     )
 
-    d = Display(spi, 8, 5)
+    d = Display(spi, 12, 5)
     #t = Text(d, program["text"])
     t =  Text(d, program["text"])
     t.scroll(1, int(program["speed"]))
