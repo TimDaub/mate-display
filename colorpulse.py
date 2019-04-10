@@ -1,11 +1,15 @@
 from machine import Pin, SPI
 from display import Display
 from pixels import Pixels
-from utime import sleep_us
+import _thread
 
 r = 255
 g = 0
 b = 0
+
+#display
+h = 12
+w = 5
 
 def main(program):
     distance = int(program["distance"])
@@ -61,8 +65,8 @@ def main(program):
                 display += colors[pattern[n]][i]
                 d.set_data(display)
                 d.show()
-        #sleep_us(1000000)
     d.clear()
+    _thread.exit()
 
 def rgb2hex(r, g, b):
     return '%02x%02x%02x' % (r, g, b)
