@@ -18,7 +18,7 @@ def main():
     black = "0"*6*80
     white = "f"*6*80
 
-    d = Display(spi, 8, 5)
+    d = Display(spi, 20, 5)
     d.set_data(white)
     d.show()
     sleep_us(50000)
