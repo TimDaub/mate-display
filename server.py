@@ -41,7 +41,7 @@ def kill():
     # Stop program
     sleep_us(1)
         
-def serve(ip):
+def serve(ip, display):
     HEADER = """\
 HTTP/1.1 {code} {status}
 Server: tims_fun_server
@@ -91,6 +91,7 @@ Content-Length: {content_length}
             # Launch new program
             program = query_string_to_dict(path)
             program["run"] = True
+            program["display"] = display
 
             name = program["program"]
             exec('import ' + name, {} )

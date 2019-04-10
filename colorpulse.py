@@ -43,7 +43,7 @@ def main(program):
         mosi=Pin(16),
         sck=Pin(17)
     )
-    d = Display(spi, h, w)
+    d = Display(spi, program["display"]["height"], program["display"]["width"])
     colors = []
     while program["run"]:
         if not colors:
