@@ -1,5 +1,6 @@
 from pixels import Pixels
 
+
 class Display:
     def __init__(self, spi, h, w):
         self.p = Pixels(spi, h*w)
@@ -7,16 +8,9 @@ class Display:
         self.w = w
 
     def get_pixel(self, x, y):
-        index = 0
         if y % 2 == 0:
-            # wiring: top left to bottom
-            #index = x + self.w * y
-            #rewiring from bottom left to top left:
             index = (self.w * self.h - 1) - (x + self.w * y)
         else:
-            # wiring: top left to bottom
-            #index = self.w * y + self.w - x - 1
-            #rewiring from bottom left to top left
             index = (self.w * self.h) - (self.w * y + (self.w - x))
         return index
 
@@ -24,7 +18,7 @@ class Display:
         return self.p.get_pixel(self.get_pixel(x, y))
 
     def set_pixel(self, x, y, color, show=True):
-        if x > self.w - 1  or x < 0 or y > self.h - 1 or y < 0:
+        if x > self.w - 1 or x < 0 or y > self.h - 1 or y < 0:
             # TODO: Make IndexValue error
             raise Exception("Out of index")
         else:
@@ -53,4 +47,3 @@ class Display:
 
     def clear(self, show=True):
         self.p.clear(show)
-
