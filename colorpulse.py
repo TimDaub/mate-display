@@ -7,9 +7,10 @@ r = 255
 g = 0
 b = 0
 
-#display
+# display
 h = 12
 w = 5
+
 
 def main(program):
     distance = int(program["distance"])
@@ -68,14 +69,16 @@ def main(program):
     d.clear()
     _thread.exit()
 
-def rgb2hex(r, g, b):
-    return '%02x%02x%02x' % (r, g, b)
+
+def rgb2hex(red, green, blue):
+    return '%02x%02x%02x' % (red, green, blue)
+
 
 def colorsetter(steps):
     global r
     global g
     global b
-    #steps has to be a divisor of 255
+    # steps has to be a divisor of 255
     if r == 255 and g == 0 and b < 255:
         # adding blue
         b += steps
