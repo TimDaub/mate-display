@@ -1,4 +1,4 @@
-from machine import Pin, SPI
+from machine import Pin, SPI, ADC
 from display import Display
 from pixels import Pixels
 import _thread
@@ -6,6 +6,7 @@ import _thread
 r = 255
 g = 0
 b = 0
+brightness = 1
 
 # display
 h = 12
@@ -19,9 +20,11 @@ def main(program):
     global r
     global b
     global g
+    global brightness
     r = 255
     g = 0
     b = 0
+    brightness = (int(program["brightness"])) / 100
     pattern = [0, 1, 2, 3, 4,
                4, 3, 2, 1, 1,
                2, 2, 3, 4, 5,
@@ -71,7 +74,8 @@ def main(program):
 
 
 def rgb2hex(red, green, blue):
-    return '%02x%02x%02x' % (red, green, blue)
+    global brightness
+    return '%02x%02x%02x' % (round(red * brightness), round(green * brightness), round(blue * brightness))
 
 
 def colorsetter(steps):
