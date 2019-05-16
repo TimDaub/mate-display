@@ -23,3 +23,4 @@ class Glow:
             if pixel[4] > 0:
                 pixel[4] -= 1
         self.d.show()
+    

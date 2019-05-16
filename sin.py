@@ -15,7 +15,12 @@ def main(program):
         mosi=Pin(16),
         sck=Pin(17)
     )
-    color = '%02x%02x%02x' % (randint(0, 254), randint(0, 254), randint(0, 254))
+    brightness = (int(program["brightness"])) / 100
+    color = '%02x%02x%02x' % (
+        randint(0, round(255 * brightness)),
+        randint(0, round(255 * brightness)),
+        randint(0, round(255 * brightness))
+    )
 
     d = Display(spi, program["display"]["height"], program["display"]["width"])
     offset = 0
