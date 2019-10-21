@@ -5,7 +5,7 @@
     },
     "hostname": "display",
     "display": {
-        "height": 12,
+        "height": 20,
         "width": 5
     }
 }
