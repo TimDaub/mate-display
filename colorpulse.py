@@ -1,4 +1,4 @@
-# here is a comment to easily test the new update method
+# here is a new comment to easily test the new update methodgetgit
 
 from machine import Pin, SPI, ADC
 from display import Display
