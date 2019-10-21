@@ -10,4 +10,5 @@ def main():
         code = open(filename, "w")
         code.write(response.text)
         code.close()
+        print(filenamscre)
     filelist.close()
