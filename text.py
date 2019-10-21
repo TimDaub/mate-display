@@ -13,8 +13,11 @@ class Text:
         with open('dotfont.json') as fh:
             dotfont = json.load(fh)
             for char in self.text:
-                dotchar = dotfont[char.upper()]
-                dotstring += dotchar
+                if char.issspace():
+                    dotstring += "....."
+                else:
+                    dotchar = dotfont[char.upper()]
+                    dotstring += dotchar
         return dotstring
 
     def add_spaces(self, spaces):
