@@ -1,3 +1,5 @@
+# here is a comment to easily test the new update method
+
 from machine import Pin, SPI, ADC
 from display import Display
 from pixels import Pixels
