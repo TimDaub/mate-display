@@ -13,7 +13,7 @@ class Text:
         with open('dotfont.json') as fh:
             dotfont = json.load(fh)
             for char in self.text:
-                if char.issspace():
+                if char.isspace():
                     dotstring += "....."
                 else:
                     dotchar = dotfont[char.upper()]
