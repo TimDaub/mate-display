@@ -5,10 +5,21 @@ from utime import sleep_us
 from urandom import randint
 import _thread
 
+
+brightness = 1
+
+
 def rand_color():
-    return '%02x%02x%02x' % (randint(0, 254), randint(0, 254), randint(0, 254))
+    global brightness
+    return '%02x%02x%02x' % (
+        randint(0, round(255*brightness)),
+        randint(0, round(255*brightness)),
+        randint(0, round(255*brightness))
+    )
+
 
 def main(program):
+    global brightness
     spi = SPI(
         1,
         baudrate=2000000,
@@ -18,7 +29,7 @@ def main(program):
         mosi=Pin(16),
         sck=Pin(17)
     )
-
+    brightness = (int(program["brightness"])) / 100
     color = rand_color()
     # For debugging
     #from dvd import main
@@ -65,5 +76,3 @@ def main(program):
         # Decided against giving a parameter to the front end. It's OK like
         # this :)
         sleep_us(100000)
-
-
