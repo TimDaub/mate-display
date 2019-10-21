@@ -8,3 +8,4 @@ def main():
         code = open(line,"w")
         code.write(response.text)
         code.close()
+    filelist.close()
