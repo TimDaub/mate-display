@@ -8,11 +8,6 @@ g = 0
 b = 0
 brightness = 1
 
-# display
-h = 12
-w = 5
-
-
 def main(program):
     distance = int(program["distance"])
     steps = int(program["steps"])
