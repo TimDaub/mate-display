@@ -1,1 +1,2 @@
 filelist.txt
+public/index.html
