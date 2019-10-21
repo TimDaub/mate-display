@@ -25,7 +25,8 @@ def load(path, ending):
         mode = "r"
 
     with open(path, mode) as content_file:
-            return content_file.read()
+        return content_file.read()
+
 
 def query_string_to_dict(query):
     # This doesn't work with micropython :( as it doesn't have re.findall
@@ -38,9 +39,11 @@ def query_string_to_dict(query):
         d[key] = value
     return d
 
+
 def kill():
     # Stop program
     sleep_us(1)
+
 
 def serve(ip, display):
     HEADER = """\
@@ -51,7 +54,7 @@ Content-Length: {content_length}
 
 """
     program = {"run": True}
-    ai = socket.getaddrinfo(ip,80)
+    ai = socket.getaddrinfo(ip, 80)
     addr = ai[0][4]
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -95,10 +98,10 @@ Content-Length: {content_length}
             program["display"] = display
 
             name = program["program"]
-            exec('import ' + name, {} )
+            exec('import ' + name, {})
 
             clear()
-            _thread.start_new_thread(sys.modules[name].main, (program, ))
+            _thread.start_new_thread(sys.modules[name].main, (program,))
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
@@ -150,7 +153,7 @@ Content-Length: {content_length}
                 continue
 
             try:
-                f = load("public/"+name, ending)
+                f = load("public/" + name, ending)
             except:
                 content = HEADER.format(
                     status="NOT FOUND",
@@ -166,7 +169,7 @@ Content-Length: {content_length}
                     status="OK",
                     code="200",
                     content_type=mimetype,
-                    content_length=os.stat("public/"+name)[6]
+                    content_length=os.stat("public/" + name)[6]
                 )
                 if ending in binary:
                     content = f

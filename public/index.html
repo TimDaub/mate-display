@@ -52,6 +52,9 @@
             function cancel() {
                 get("cancel")
             }
+            function updateFiles() {
+                get("updatefiles")
+            }
         </script>
         <style>
         .slider{
@@ -82,7 +85,6 @@
     </head>
     <body>
       <h1>Mate Display</h1>
-      <img src="qr.png" alt="site"/>
       <p>
       Brightness:
       <input
@@ -96,6 +98,9 @@
       </p>
       <p>
         <button onclick="cancel()">Clear</button>
+      </p>
+      <p>
+        <button onclick="updateFiles()">update</button>
       </p>
       <p>
         <b>Sin wave ~ </b>
