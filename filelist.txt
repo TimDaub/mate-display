@@ -6,3 +6,4 @@ colorpulse.py
 text.py
 random.py
 dvd.py
+glow.py
