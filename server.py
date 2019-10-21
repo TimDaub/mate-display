@@ -7,6 +7,7 @@ import gc
 from utime import sleep_us
 
 from clear import main as clear
+from gitupdate import main as gitupdate
 
 files = {
     "html": "text/html",
@@ -22,7 +23,7 @@ def load(path, ending):
         mode = "rb"
     else:
         mode = "r"
-        
+
     with open(path, mode) as content_file:
             return content_file.read()
 
@@ -40,7 +41,7 @@ def query_string_to_dict(query):
 def kill():
     # Stop program
     sleep_us(1)
-        
+
 def serve(ip, display):
     HEADER = """\
 HTTP/1.1 {code} {status}
@@ -108,9 +109,15 @@ Content-Length: {content_length}
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
+        elif path == "/updatefiles":
+            clear()
+            gitupdate()
+            client_s.send(bytes("OK", "ascii"))
+            client_s.close()
+            continue
         else:
             name = path[1:]
-            
+
             if not name:
                 name = "index.html"
 
@@ -141,7 +148,7 @@ Content-Length: {content_length}
                 client_s.send(bytes(content, "ascii"))
                 client_s.close()
                 continue
-                                            
+
             try:
                 f = load("public/"+name, ending)
             except:
@@ -165,6 +172,6 @@ Content-Length: {content_length}
                     content = f
                 else:
                     content = bytes(content + f, "ascii")
-                client_s.send(content) 
+                client_s.send(content)
                 client_s.close()
                 continue
