@@ -15,8 +15,8 @@ def main():
         mosi=Pin(16),
         sck=Pin(17)
     )
-    black = "0"*6*80
-    white = "f"*6*80
+    black = "0"*6*100
+    white = "f"*6*100
 
     d = Display(spi, 20, 5)
     d.set_data(white)
