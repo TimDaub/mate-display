@@ -5,7 +5,7 @@ from utime import sleep_us
 class Text:
     def __init__(self, display, text):
         self.display = display
-        self.text = text.replace("%20", " ")
+        self.text = text.strip()
         self.dotstring = self.encode()
 
     def encode(self):

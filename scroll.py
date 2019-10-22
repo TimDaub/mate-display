@@ -15,6 +15,6 @@ def main(program):
     )
 
     d = Display(spi, program["display"]["height"], program["display"]["width"])
-    t =  Text(d, program["text"])
+    t =  Text(d, program["text"].replace("%20", " "))
     t.scroll()
     _thread.exit()
