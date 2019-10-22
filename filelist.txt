@@ -1,9 +1,9 @@
 public/index.html
-#gitupdate.py
+gitupdate.py
 #random.py
 clear.py
 #colorpulse.py
-#text.py
+text.py
 #random.py
 #dvd.py
 #sin.py
