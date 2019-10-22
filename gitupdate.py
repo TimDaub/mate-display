@@ -19,7 +19,7 @@ def main():
         response = urequests.get(path + filename)
         if response.text[:3] == "404":
             pass
-        else
+        else:
             code = open(filename, "w")
             code.write(response.text)
             code.close()
