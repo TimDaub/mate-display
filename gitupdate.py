@@ -9,7 +9,7 @@ def main():
     code = open(filename, "w")
     code.write(response.text)
     code.close()
-    print(filenamscre)
+    print(filename)
     filelist = open("filelist.txt", "r")
     for line in filelist:
         #update files from list
@@ -17,10 +17,11 @@ def main():
         if filename[:1] == "#":
             pass
         response = urequests.get(path + filename)
-        if response[:3] == "404":
+        if response.text[:3] == "404":
             pass
-        code = open(filename, "w")
-        code.write(response.text)
-        code.close()
-        print(filename)
+        else
+            code = open(filename, "w")
+            code.write(response.text)
+            code.close()
+            print(filename)
     filelist.close()
