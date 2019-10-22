@@ -16,5 +16,5 @@ def main(program):
 
     d = Display(spi, program["display"]["height"], program["display"]["width"])
     t =  Text(d, program["text"])
-    t.scroll(1, 100000))
+    t.scroll(1, 100000)
     _thread.exit()

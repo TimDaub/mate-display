@@ -31,7 +31,7 @@ class Text:
         padding = "."*self.display.w*self.display.h
         self.dotstring = padding + self.dotstring + padding
 
-    def scroll(self, spaces=1, speed=100000):
+    def scroll(self, spaces=1, speed):
         #self.add_spaces(spaces)
         #between letter spaces are now included in the font
         #cause this messed up the actual between words spaces
