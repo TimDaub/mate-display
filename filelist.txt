@@ -1,9 +1,9 @@
-filelist.txt
 public/index.html
-random.py
+gitupdate.py
+#random.py
 clear.py
-colorpulse.py
-text.py
-random.py
-dvd.py
-glow.py
+#colorpulse.py
+#text.py
+#random.py
+#dvd.py
+#sin.py
