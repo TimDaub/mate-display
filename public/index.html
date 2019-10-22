@@ -55,6 +55,9 @@
             function updateFiles() {
                 get("updatefiles")
             }
+            function dropdown() {
+                document.getElementById("devbox").classList.toggle("show");
+            }
         </script>
         <style>
         .slider{
@@ -63,7 +66,6 @@
         background: #d3d3d3;
         opacity: 0.7;
         }
-
         .slider::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
@@ -73,7 +75,6 @@
           background: #4CAF50;
           cursor: pointer;
         }
-
         .slider::-moz-range-thumb {
           width: 15px;
           height: 15px;
@@ -81,6 +82,27 @@
           background: #4768cc;
           cursor: pointer;
         }
+        .dropbtn {
+          background-color: inherit;
+          color: grey;
+          font-size: inherit;
+          border: none;
+        }
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        .dropdown-content{
+          color: grey;
+          font-size: inherit;
+          display: none;
+          position: absolute;
+          padding: 10px;
+          min-width: 400px;
+          overflow: auto;
+          z-index: 1;
+        }
+        .show {display: block;}
         </style>
     </head>
     <body>
@@ -151,13 +173,12 @@
         <button onclick="trigger('dvd')">Start!</button>
       </p>
       </br>
-      <p>
-        <div "style=font-size:medium">
-          <span style="font-family:monospace font-color:grey">
-            <b>dev tools ~ </b>
-          <button onclick="updateFiles()">update from git master</button>
-          </span>
-        </div>
-      </p>
+      <div class="dropdown">
+          <button onclick="dropdown()" class="dropbtn">dev tools</button>
+          <div id="devbox" class="dropdown-content">
+            ~ update from git 
+            <button onclick="updateFiles()">Start!</button>
+          </div>
+      </div>
     </body>
 </html>
