@@ -100,21 +100,22 @@ Content-Length: {content_length}
             name = program["program"]
             exec('import ' + name, {})
 
-            clear()
+            clear("ffffff")
             _thread.start_new_thread(sys.modules[name].main, (program,))
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
         elif path == "/cancel":
             program["run"] = False
-            clear()
+            clear("ffffff")
             gc.collect()
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
         elif path == "/updatefiles":
-            clear()
+            clear("ffffff")
             gitupdate()
+            clear("00ff00")
             client_s.send(bytes("OK", "ascii"))
             client_s.close()
             continue
