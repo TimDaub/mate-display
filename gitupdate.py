@@ -16,12 +16,13 @@ def main():
         filename = str.rstrip(line)
         if filename[:1] == "#":
             pass
-        response = urequests.get(path + filename)
-        if response.text[:3] == "404":
-            pass
         else:
-            code = open(filename, "w")
-            code.write(response.text)
-            code.close()
-            print(filename)
+            response = urequests.get(path + filename)
+            if response.text[:3] == "404":
+                pass
+            else:
+                code = open(filename, "w")
+                code.write(response.text)
+                code.close()
+                print(filename)
     filelist.close()
