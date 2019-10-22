@@ -14,9 +14,9 @@ class Text:
             dotfont = json.load(fh)
             for char in self.text:
                 if char.isspace():
-                    dotstring += "....."
+                    dotstring += ("." * 10)
                 else:
-                    dotchar = dotfont[char.upper()]
+                    dotchar = dotfont[char.upper()] + ("." * 5)
                     dotstring += dotchar
         return dotstring
 
