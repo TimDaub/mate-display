@@ -32,7 +32,7 @@ def main(program):
 
         offset += 1
         d.show()
-        sleep_us(int(program["rate"]))
+        sleep_us(40000)
 
     d.clear()
     _thread.exit()
