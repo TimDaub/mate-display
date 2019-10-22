@@ -113,7 +113,9 @@ Content-Length: {content_length}
             client_s.close()
             continue
         elif path == "/updatefiles":
+            program["run"] = False
             clear("ffffff")
+            gc.collect()
             gitupdate()
             clear("00ff00")
             client_s.send(bytes("OK", "ascii"))
