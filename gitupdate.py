@@ -14,9 +14,8 @@ def main():
     for line in filelist:
         #update files from list
         filename = str.rstrip(line)
-        print(filename[:1])
         if filename[:1] == "#":
-            print("lalalala")
+            pass
         else:
             response = urequests.get(path + filename)
             if response.text[:3] == "404":
