@@ -21,8 +21,8 @@ def main():
             if response.text[:3] == "404":
                 pass
             else:
-                code = open(filename, "w")
-                code.write(response.text)
-                code.close()
-                print(filename)
+                with open(filename, "w") as code:
+                    code.write(response.text)
+                    code.close()
+                    print(filename)
     filelist.close()
