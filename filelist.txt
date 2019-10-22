@@ -6,4 +6,4 @@ text.py
 scroll.py
 #random.py
 #dvd.py
-#sin.py
+sin.py
