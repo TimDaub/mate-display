@@ -3,6 +3,7 @@ public/index.html
 clear.py
 #colorpulse.py
 text.py
+scroll.py
 #random.py
 #dvd.py
 #sin.py
