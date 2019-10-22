@@ -22,5 +22,5 @@ def main():
         code = open(filename, "w")
         code.write(response.text)
         code.close()
-        print(filenamscre)
+        print(filename)
     filelist.close()
