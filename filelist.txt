@@ -1,5 +1,4 @@
 public/index.html
-gitupdate.py
 #random.py
 clear.py
 #colorpulse.py
