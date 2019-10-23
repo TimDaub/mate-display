@@ -46,7 +46,7 @@
             function trigger(program) {
                 var params = parseInputs(program);
                 get("rpc", params);
-                event.stopPropagation();
+                event.preventDefault();
             }
 
             function cancel() {
