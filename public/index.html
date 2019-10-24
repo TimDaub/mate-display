@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <meta name="viewport" content="width=max-device-width, user-scalable=no" />
     <script>
             function toQueryString(obj) {
                 if (!obj) {
@@ -54,7 +55,7 @@
                 pages[i].style.display = "none";
               }
               tabs = document.getElementsByClassName("menuItem");
-              for (i = 0; i < pages.length; i++) {
+              for (i = 0; i < tabs.length; i++) {
                 tabs[i].className = tabs[i].className.replace("active" , "")
               }
               document.getElementById(page).style.display = "block";
@@ -127,17 +128,19 @@
       .menuBar {
         background-color: black;
         display: inline-block;
-        padding: 10px;
+        padding: 4px;
+        width: 100%;
       }
       .menuItem {
-        padding: 15px;
+        width: 19%;
+        padding-top: 15px;
+        padding-bottom: 15px;
         border: none;
         background-color: white;
+        border-radius: 5px;
       }
       .active {
-        padding: 15px;
-        border: none;
-        background-color: red;
+        background-color: lightblue;
       }
       .program {
       }
@@ -168,9 +171,8 @@
        <button class="menuItem" onclick="openTab('Fireworks')">
          Fireworks</button>
        <button class="menuItem" onclick="openTab('Screensaver')">
-         DVD Screensaver</button>
-       <button class="menuItem" onclick="openTab('Devtools')">
-         Dev Tools</button>
+         DVD</button>
+
     </div>
     <div id="Sinwave" class="program" style="display:none">
         <b>Sin wave ~ </b>
