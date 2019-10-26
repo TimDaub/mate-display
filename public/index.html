@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <script>
+    <meta name="viewport" content="width=max-device-width, user-scalable=no" />
+    <script>
             function toQueryString(obj) {
                 if (!obj) {
                     return "";
@@ -13,7 +14,6 @@
                     }
                 }, "?");
             }
-
             function get(path, obj) {
                 var params = toQueryString(obj)
 
@@ -42,13 +42,24 @@
 
                 return params
             }
-
             function trigger(program) {
                 var params = parseInputs(program);
                 get("rpc", params);
                 event.preventDefault();
             }
-
+            function openTab(page) {
+              var i, pages, tabs;
+              pages = document.getElementsByClassName("program");
+              for (i = 0; i < pages.length; i++) {
+                pages[i].style.display = "none";
+              }
+              tabs = document.getElementsByClassName("menuItem");
+              for (i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace("active" , "")
+              }
+              document.getElementById(page).style.display = "block";
+              event.currentTarget.className += " active"
+            }
             function cancel() {
                 get("cancel")
             }
@@ -58,8 +69,8 @@
             function dropdown() {
                 document.getElementById("devbox").classList.toggle("show");
             }
-        </script>
-        <style>
+    </script>
+    <style>
         .slider{
           width: 25%;
           height: 5px;
@@ -72,7 +83,7 @@
           width: 15px;
           height: 15px;
           border-radius: 75%;
-          background: #4CAF50;
+          background: #4768cc;
           cursor: pointer;
         }
         .slider::-moz-range-thumb {
@@ -102,81 +113,142 @@
           overflow: auto;
           z-index: 1;
         }
-        .show {display: block;}
-        </style>
-    </head>
+        .description {
+          min-height: 100px;
+        }
+        .show {display: block;
+        }
+        .input {
+          border-radius: 5px;
+        }
+        .button {
+          cursor: pointer;
+          border-radius: 5px;
+          background-color: #4768cc;
+          color: white;
+          padding: 10px;
+          width: 60px;
+          text-align: center;
+        }
+      .menuBar {
+        margin-left: -10px;
+        background-color: black;
+        display: inline-block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 9px;
+        padding-right: 9px;
+        width: 100%;
+        overflow: hidden;
+      }
+      .menuItem {
+        width: 19%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border: none;
+        background-color: white;
+        border-radius: 5px;
+      }
+      .active {
+        background-color: lightblue;
+      }
+      .program {
+      }
+    </style>
     <body>
       <h1>Mate Display</h1>
-      <p>
-      Brightness:
-      <input
-        type="range"
-        class="slider"
-        data-program="all"
-        data-key="brightness"
-        min="1"
-        max="100"
-        value="100">
-      </p>
-      <p>
-        <button onclick="cancel()">Clear</button>
-      </p>
-      <p>
+   <div class="menuBar">
+     <button class="menuItem" onclick="openTab('Sinwave')">
+       Sinwave</button>
+      <button class="menuItem" onclick="openTab('Colorpattern')">
+        Colorpattern</button>
+       <button class="menuItem" onclick="openTab('Text')">
+         Text</button>
+       <button class="menuItem" onclick="openTab('Fireworks')">
+         Fireworks</button>
+       <button class="menuItem" onclick="openTab('Screensaver')">
+         DVD</button>
+    </div>
+    <div id="Sinwave" class="program" style="display:none">
+      <div class="description">
         <b>Sin wave ~ </b>
-        <button onclick="trigger('sin')">Start!</button>
-      </br>
-      <p>
-        <b>Colorpattern ~ </b>
-        <button onclick="trigger('colorpulse')">Start!</button>
-      </br>
+      </div>
+      <div class="button" onclick="trigger('sin')">Start!</div>
+    </div>
+  </div>
+  <div id="Colorpattern" class="program" style="display:none">
+    <div class="description">
+      <b>Colorpattern ~ </b>
+      <br>
         Distance:
-        <input
+        <input class="input"
           type="number"
           placeholder="from 1 to 50"
           data-program='colorpulse'
           data-key="distance"
           min="1"
           max="50">
-        </br>
+        <br>
         Speed:
-        <select data-key="steps" data-program="colorpulse">
+        <select class="input" data-key="steps" data-program="colorpulse">
           <option value="1">ambient</option>
           <option value="5">chill</option>
           <option value="15">avg</option>
           <option value="51">fast</option>
           <option value="85">wild</option>
         </select>
-      </br>
-      <p>
-        <b>Scroll text ~ </b>
-        <p onclick="trigger('scroll')">Start!</p>
-        </br>
-        Text:
-        <input data-key="text" data-program='scroll' type="text">
-        </br>
-      </p>
-      <p>
-        <b>Fireworks ~ </b>
-        <button onclick="trigger('random')">Start!</button>
-        </br>
-        Probability:
-        <select data-key="probability" data-program='random'>
-          <option value="2">very many</option>
-          <option value="10">many</option>
-          <option value="50">a few</option>
-        </select>
-      </p>
-      <p>
-        <b>DVD Screensaver ~ </b>
-        <button onclick="trigger('dvd')">Start!</button>
-      </p>
-      </br>
-      <div class="dropdown">
-          <button onclick="dropdown()" class="dropbtn">dev tools</button>
-          <div id="devbox" class="dropdown-content">
-            ~ update from git
-            <button onclick="updateFiles()">Start!</button>
-          </div>
       </div>
+      <div class="button" onclick="trigger('colorpulse')">Start!</div>
+    </div>
+    <div id="Text" class="program" style="display:none">
+      <div class="description">
+        <b>Scroll text ~ </b>
+        <br>
+        Text:
+        <input class="input" data-key="text" data-program='scroll' type="text">
+      </div>
+      <div class="button" onclick="trigger('scroll')">Start!</div>
+    </div>
+    <div id="Fireworks" class="program" style="display:none">
+      <div class="description">
+        <b>Fireworks ~ </b>
+        Ammount:
+        <select class="input" data-key="probability" data-program='random'>
+          <option value="50">a few</option>
+          <option value="10">many</option>
+          <option value="2">vive le roi</option>
+        </select>
+      </div>
+      <div class="button" onclick="trigger('random')">Start!</div>
+    </div>
+    <div id="Screensaver" class="program" style="display:none">
+      <div class="description">
+        <b>DVD Screensaver ~ </b>
+      </div>
+      <div class="button" onclick="trigger('dvd')">Start!</div>
+    </div>
+    <div id="Devtools" class="program" style="display:none">
+    <div class="dropdown">
+        <button onclick="dropdown()" class="dropbtn">dev tools</button>
+        <div id="devbox" class="dropdown-content">
+          ~ update from git
+          <div class="button" onclick="updateFiles()">Start!</div>
+        </div>
+        <p>
+        Brightness:
+        <input class="input"
+          type="range"
+          class="slider"
+          data-program="all"
+          data-key="brightness"
+          min="1"
+          max="100"
+          value="100">
+        </p>
+        <p>
+          <div class="button" onclick="cancel()">Clear</div>
+        </p>
+      </div>
+    </div>
     </body>
 </html>
