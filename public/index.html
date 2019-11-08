@@ -71,11 +71,22 @@
             }
     </script>
     <style>
+        .h1{
+          background-color: black;
+          color: white;
+          height: 70px;
+          width: 100%;
+          padding-right: 18px;
+          padding-top: 10px;
+          margin-left: -10px;
+          margin-top: -20px;
+          text-align: center;
+        }
         .slider{
           width: 25%;
           height: 5px;
-        background: #d3d3d3;
-        opacity: 0.7;
+          background: #d3d3d3;
+          opacity: 0.7;
         }
         .slider::-webkit-slider-thumb {
           -webkit-appearance: none;
@@ -114,22 +125,39 @@
           z-index: 1;
         }
         .description {
-          min-height: 100px;
+          min-height: 120px;
+          font-size: large;
         }
         .show {display: block;
         }
         .input {
           border-radius: 5px;
+          font-size: large;
         }
         .button {
           cursor: pointer;
-          border-radius: 5px;
+          border-style: solid;
+          border-width: 2px;
+          border-color: grey;
+          border-radius: 100%;
           background-color: #4768cc;
           color: white;
-          padding: 10px;
-          width: 60px;
+          padding: 20px;
+          width: 50px;
+          height: 50px;
           text-align: center;
+          margin: auto;
+          font-size: large;
+          font-weight: bold;
+          line-height: 50px;
+
         }
+        .noselect {
+          -webkit-user-select: none;
+          -moz-user-select: -moz-none;
+          -ms-user-select: none;
+          user-select: none;
+          }
       .menuBar {
         margin-left: -10px;
         background-color: black;
@@ -143,11 +171,12 @@
       }
       .menuItem {
         width: 19%;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding-top: 5%;
+        padding-bottom: 5%;
         border: none;
         background-color: white;
         border-radius: 5px;
+        font-size: large;
       }
       .active {
         background-color: lightblue;
@@ -156,31 +185,31 @@
       }
     </style>
     <body>
-      <h1>Mate Display</h1>
+   <div class="h1">
+      <h1 >Mate Display</h1>
+   </div>
    <div class="menuBar">
-     <button class="menuItem" onclick="openTab('Sinwave')">
-       Sinwave</button>
+     <button class="menuItem noselect" onclick="openTab('Sinwave')">
+       Sin</button>
       <button class="menuItem" onclick="openTab('Colorpattern')">
-        Colorpattern</button>
+        Colors</button>
        <button class="menuItem" onclick="openTab('Text')">
          Text</button>
        <button class="menuItem" onclick="openTab('Fireworks')">
-         Fireworks</button>
+         Firework</button>
        <button class="menuItem" onclick="openTab('Screensaver')">
          DVD</button>
     </div>
     <div id="Sinwave" class="program" style="display:none">
       <div class="description">
-        <b>Sin wave ~ </b>
+      <p></p>
       </div>
       <div class="button" onclick="trigger('sin')">Start!</div>
     </div>
   </div>
   <div id="Colorpattern" class="program" style="display:none">
     <div class="description">
-      <b>Colorpattern ~ </b>
-      <br>
-        Distance:
+        <p>Distance:
         <input class="input"
           type="number"
           placeholder="from 1 to 50"
@@ -188,7 +217,8 @@
           data-key="distance"
           min="1"
           max="50">
-        <br>
+      </p>
+      <p>
         Speed:
         <select class="input" data-key="steps" data-program="colorpulse">
           <option value="1">ambient</option>
@@ -197,58 +227,37 @@
           <option value="51">fast</option>
           <option value="85">wild</option>
         </select>
+      </p>
       </div>
       <div class="button" onclick="trigger('colorpulse')">Start!</div>
     </div>
     <div id="Text" class="program" style="display:none">
       <div class="description">
-        <b>Scroll text ~ </b>
-        <br>
-        Text:
-        <input class="input" data-key="text" data-program='scroll' type="text">
+        <p>
+          Text:
+          <input class="input" data-key="text" data-program='scroll' type="text">
+        </p>
       </div>
       <div class="button" onclick="trigger('scroll')">Start!</div>
     </div>
     <div id="Fireworks" class="program" style="display:none">
       <div class="description">
-        <b>Fireworks ~ </b>
+        <p>
         Ammount:
         <select class="input" data-key="probability" data-program='random'>
           <option value="50">a few</option>
           <option value="10">many</option>
           <option value="2">vive le roi</option>
         </select>
+        </p>
       </div>
       <div class="button" onclick="trigger('random')">Start!</div>
     </div>
     <div id="Screensaver" class="program" style="display:none">
       <div class="description">
-        <b>DVD Screensaver ~ </b>
+        <p></p>
       </div>
       <div class="button" onclick="trigger('dvd')">Start!</div>
-    </div>
-    <div id="Devtools" class="program" style="display:none">
-    <div class="dropdown">
-        <button onclick="dropdown()" class="dropbtn">dev tools</button>
-        <div id="devbox" class="dropdown-content">
-          ~ update from git
-          <div class="button" onclick="updateFiles()">Start!</div>
-        </div>
-        <p>
-        Brightness:
-        <input class="input"
-          type="range"
-          class="slider"
-          data-program="all"
-          data-key="brightness"
-          min="1"
-          max="100"
-          value="100">
-        </p>
-        <p>
-          <div class="button" onclick="cancel()">Clear</div>
-        </p>
-      </div>
     </div>
     </body>
 </html>
