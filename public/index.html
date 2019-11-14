@@ -72,18 +72,19 @@
   </script>
   <style>
       .overlay{
-        width: 100%;
-        height: 100%;
+        width: 95vw;
+        height: 100vh;
         display: none;
         position: absolute;
         cursor: pointer;
         opacity: 0;
       }
       .h1{
+        font-family: sans-serif;
         position: relative;
         background-color: black;
         color: white;
-        height: 65px;
+        height: 10vh;
         width: 100%;
         padding-right: 18px;
         padding-top: 10px;
@@ -91,7 +92,7 @@
         margin-top: -20px;
       }
       .center{
-        font-size: xx-large;
+        font-size: 10vw;
         font-weight: bold;
         margin-top: 15px;
         display: inline-block;
@@ -101,7 +102,7 @@
         text-align: center;
       }
       .right{
-        font-size: xx-large;
+        font-size: 10vw;
         margin-top: 10px;
         display: inline-block;
         position: absolute;
@@ -109,88 +110,108 @@
         margin-right: 15px;
       }
       .slider{
+        -webkit-appearance: none;
+        appearance: none;
         background: rgba(0,0,0,0.4);
         width: 95%;
-        height: 10px;
+        height: 2vh;
+        outline: none;
+        border-radius: 15px;
+      }
+      .slider::-webkit-slider-runnable-track {
+        background-color: transparent;
+        background: rgba(0,0,0,0.4);
+        width: 95%;
+        height: 2vh;
         outline: none;
         border-radius: 15px;
       }
       .slider::-webkit-slider-thumb {
         -webkit-appearance: none;
-        appearance: none;
-        width: 20px;
-        height: 20px;
+        width: 3vh;
+        height: 3vh;
         border-radius: 75%;
         background: #ffffff;
         cursor: pointer;
+        margin-top: -0.5vh;
       }
       .slider::-moz-range-track {
         background-color: transparent;
       }
       .slider::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
+        width: 3vh;
+        height: 3vh;
         border-radius: 75%;
         background: #ffffff;
         cursor: pointer;
       }
       .dropdown{
         float: right;
-        right: 0px;
-        margin-right: 5px;
+        right: 5px;
         margin-top: -15px;
         position: absolute;
         display: none;
         border-radius: 5px;
-        padding: 10px;
-        width: 45%;
-        overflow: auto;
+        padding: 25px;
+        width: 50vw;
+        height: auto;
         background-color: rgba(152, 1, 75,0.8)
       }
       .dropdowncontent{
         z-index: 1;
-        font-size: large;
+        font-size: 4.5vw;
+        font-family: sans-serif;
         color: white;
       }
       .description {
-        min-height: 120px;
-        font-size: large;
+        min-height: 25vh;
+        font-size: 4.5vw;
+        font-family: sans-serif;
       }
       .show {
         display: block;
       }
       .input {
-        border-radius: 5px;
-        font-size: large;
+        border-radius: 5%;
+        font-size: 4.5vw;
+        min-width: 40vw;
       }
-      .button {
+      .startbutton {
+        font-family: sans-serif;
         cursor: pointer;
         border-style: solid;
-        border-width: 1px;
+        border-width: 2px;
         border-color: #555555;
         border-radius: 100%;
         background-color: #1060CC;
         color: white;
+        width: 20vw;
+        height: 20vw;
         padding: 20px;
-        width: 50px;
-        height: 50px;
         text-align: center;
         margin: auto;
-        font-size: large;
+        font-size: 4.5vw;
         font-weight: bold;
-        line-height: 50px;
+        line-height: 20vw;
+
+        position: absolute;
+        left: 0%;
+        right: 0%;
+        top: 0%;
+        bottom: 0%;
       }
       .smallbutton{
+        font-family: sans-serif;
         cursor: pointer;
         text-align: center;
-        border-radius: 5px;
+        border-radius: 10%;
         border-style: solid;
         border-width: 1px;
         background-color: #ffffff;
         width: 45%;
         height: 15%;
         color: #555555;
-        font-size: medium;
+        font-size: 3vw;
       }
       .noselect {
         -webkit-user-select: none;
@@ -199,6 +220,7 @@
         user-select: none;
         }
       .menuBar {
+        font-family: sans-serif;
         margin-left: -10px;
         background-color: black;
         display: inline-block;
@@ -210,6 +232,7 @@
         overflow: hidden;
       }
       .menuItem {
+        font-family: sans-serif;
         text-align: center;
         display: inline-block;
         width: 19.2%;
@@ -217,8 +240,8 @@
         padding-bottom: 5%;
         border: none;
         background-color: white;
-        border-radius: 5px;
-        font-size: large;
+        border-radius: 5%;
+        font-size: 4.5vw;
       }
       .active {
         background-color: #57B0FF;
@@ -232,7 +255,6 @@
      <div class="center">Mate Display</div>
      <div class="right" onclick="dropdown()">&equiv;</div>
    </div>
-
    <div id="devbox" class="dropdown">
     <div class="dropdowncontent">
         Select brightness<br>
@@ -253,7 +275,6 @@
         <div class="smallbutton" onclick="updateFiles()">Update</div>
     </div>
   </div>
-
    <div class="menuBar">
      <div class="menuItem" onclick="openTab('Sinwave')">
        Sin</div>
@@ -271,19 +292,21 @@
       <div class="description">
       <p></p>
       </div>
-      <div class="button" onclick="trigger('sin')">Start!</div>
+      <div class="startbutton" onclick="trigger('sin')">Start!</div>
     </div>
   </div>
   <div id="Colorpattern" class="program" style="display:none">
     <div class="description">
         <p>Distance:
-        <input class="input"
+        <input
+          class="input"
           type="number"
           placeholder="from 1 to 50"
           data-program='colorpulse'
           data-key="distance"
           min="1"
-          max="50">
+          max="50"
+          >
       </p>
       <p>
         Speed:
@@ -296,16 +319,20 @@
         </select>
       </p>
       </div>
-      <div class="button" onclick="trigger('colorpulse')">Start!</div>
+      <div class="startbutton" onclick="trigger('colorpulse')">Start!</div>
     </div>
     <div id="Text" class="program" style="display:none">
       <div class="description">
         <p>
           Text:
-          <input class="input" data-key="text" data-program='scroll' type="text">
+          <input
+          class="input"
+          data-key="text"
+          data-program='scroll'
+          type="text">
         </p>
       </div>
-      <div class="button" onclick="trigger('scroll')">Start!</div>
+      <div class="startbutton" onclick="trigger('scroll')">Start!</div>
     </div>
     <div id="Fireworks" class="program" style="display:none">
       <div class="description">
@@ -318,13 +345,13 @@
         </select>
         </p>
       </div>
-      <div class="button" onclick="trigger('random')">Start!</div>
+      <div class="startbutton" onclick="trigger('random')">Start!</div>
     </div>
     <div id="Screensaver" class="program" style="display:none">
       <div class="description">
         <p></p>
       </div>
-      <div class="button" onclick="trigger('dvd')">Start!</div>
+      <div class="startbutton" onclick="trigger('dvd')">Start!</div>
     </div>
   </body>
 </html>

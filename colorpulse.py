@@ -1,8 +1,5 @@
-# here is a new comment to easily test the new update methodgetgit
-
 from machine import Pin, SPI, ADC
 from display import Display
-from pixels import Pixels
 import _thread
 
 r = 255
@@ -56,12 +53,13 @@ def main(program):
     colors = []
     while program["run"]:
         if not colors:
+        # init fill
             for i in range(0, (max(pattern)+1)):
-                # init fill
                 colorflow = []
                 for n in range(0, distance):
                     colorflow.insert(n, colorsetter(steps))
                 colors.insert(0, colorflow)
+
         else:
             colorflow = []
             for n in range(0, distance):
