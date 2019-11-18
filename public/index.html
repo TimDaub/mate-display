@@ -44,7 +44,7 @@
             function trigger(program) {
                 var params = parseInputs(program);
                 get("rpc", params);
-                event.preventDefault();
+                event.stopPropagation();
             }
             function openTab(page) {
               var i, pages, tabs;
@@ -61,9 +61,11 @@
             }
             function cancel() {
                 get("cancel")
+                event.stopPropagation();
             }
             function updateFiles() {
                 get("updatefiles")
+                event.stopPropagation();
             }
             function dropdown() {
                 document.getElementById("overlay").classList.toggle("show");
