@@ -7,13 +7,14 @@ g = 0
 b = 0
 brightness = 1
 
+
 def main(program):
     distance = int(program["distance"])
     steps = int(program["steps"])
     # steps has to be a divisor of 255
     global r
-    global b
     global g
+    global b
     global brightness
     r = 255
     g = 0
@@ -48,12 +49,12 @@ def main(program):
         firstbit=SPI.MSB,
         mosi=Pin(16),
         sck=Pin(17)
-    )
+        )
     d = Display(spi, program["display"]["height"], program["display"]["width"])
     colors = []
     while program["run"]:
         if not colors:
-        # init fill
+            # init fill
             for i in range(0, (max(pattern)+1)):
                 colorflow = []
                 for n in range(0, distance):
