@@ -7,18 +7,14 @@ g = 0
 b = 0
 brightness = 1
 
-
 def main(program):
     distance = int(program["distance"])
+     # steps has to be a divisor of 255
     steps = int(program["steps"])
-    # steps has to be a divisor of 255
     global r
     global g
     global b
     global brightness
-    r = 255
-    g = 0
-    b = 0
     brightness = (int(program["brightness"])) / 100
     pattern = [0, 0, 1, 2,
                2, 1, 1, 0,
@@ -39,8 +35,7 @@ def main(program):
                8, 8, 8, 8,
                9, 8, 8, 8,
                8, 8, 9, 9,
-               9, 9, 9, 9
-               ]
+               9, 9, 9, 9]
 
     spi = SPI(
         1,
@@ -70,7 +65,7 @@ def main(program):
         colors = colors[0:(max(pattern)+1)]
         for i in range(0, distance):
             display = ""
-            for n in range(0, len(pattern)):
+            for n in range(0, len(pattern) + 1):
                 display += colors[pattern[n]][i]
                 d.set_data(display)
                 d.show()
@@ -83,7 +78,7 @@ def rgb2hex(red, green, blue):
     return '%02x%02x%02x' % (round(red * brightness), round(green * brightness), round(blue * brightness))
 
 
-def colorsetter(steps):
+def colorsetter(steps)
     global r
     global g
     global b
