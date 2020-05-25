@@ -1,4 +1,4 @@
-from machine import Pin, SPI, ADC
+from machine import Pin, SPI
 from display import Display
 import _thread
 
@@ -16,26 +16,26 @@ def main(program):
     global b
     global brightness
     brightness = (int(program["brightness"])) / 100
-    pattern = [0, 0, 1, 2,
-               2, 1, 1, 0,
-               1, 1, 2, 2,
-               3, 2, 2, 2,
-               2, 2, 3, 3,
-               4, 3, 3, 3,
-               3, 3, 3, 4,
-               5, 4, 4, 3,
-               4, 4, 5, 5,
-               5, 5, 5, 4,
-               5, 5, 5, 6,
-               6, 6, 5, 5,
-               5, 6, 6, 6,
-               7, 7, 6, 6,
-               6, 7, 7, 8,
-               8, 8, 7, 7,
-               8, 8, 8, 8,
-               9, 8, 8, 8,
-               8, 8, 9, 9,
-               9, 9, 9, 9]
+    pattern = [0, 0, 1, 2, 2,
+               2, 1, 1, 0, 0,
+               1, 1, 2, 2, 2,
+               3, 2, 2, 2, 2,
+               2, 2, 3, 3, 3,
+               4, 3, 3, 3, 4,
+               3, 3, 3, 4, 4,
+               5, 4, 4, 3, 3,
+               4, 4, 5, 5, 5,
+               5, 5, 5, 4, 4,
+               5, 5, 5, 6, 6,
+               6, 6, 5, 5, 5,
+               5, 6, 6, 6, 6,
+               7, 7, 6, 6, 6,
+               6, 7, 7, 8, 8,
+               8, 8, 7, 7, 7,
+               8, 8, 8, 8, 8,
+               9, 8, 8, 8, 8,
+               8, 8, 9, 9, 9,
+               9, 9, 9, 9, 9]
 
     spi = SPI(
         1,
@@ -65,7 +65,7 @@ def main(program):
         colors = colors[0:(max(pattern)+1)]
         for i in range(0, distance):
             display = ""
-            for n in range(0, len(pattern) + 1):
+            for n in range(0, len(pattern)):
                 display += colors[pattern[n]][i]
                 d.set_data(display)
                 d.show()
@@ -78,7 +78,7 @@ def rgb2hex(red, green, blue):
     return '%02x%02x%02x' % (round(red * brightness), round(green * brightness), round(blue * brightness))
 
 
-def colorsetter(steps)
+def colorsetter(steps):
     global r
     global g
     global b
