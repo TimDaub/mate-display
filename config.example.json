@@ -1,6 +1,6 @@
 {
     "WIFI": {
-        "name": "Wifi name",
+        "name": "wifi",
         "pw": "password"
     },
     "hostname": "display",

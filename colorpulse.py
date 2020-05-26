@@ -1,4 +1,4 @@
-from machine import Pin, SPI, ADC
+from machine import Pin, SPI
 from display import Display
 import _thread
 
@@ -7,40 +7,35 @@ g = 0
 b = 0
 brightness = 1
 
-
 def main(program):
     distance = int(program["distance"])
+     # steps has to be a divisor of 255
     steps = int(program["steps"])
-    # steps has to be a divisor of 255
     global r
     global g
     global b
     global brightness
-    r = 255
-    g = 0
-    b = 0
     brightness = (int(program["brightness"])) / 100
-    pattern = [0, 0, 1, 2,
-               2, 1, 1, 0,
-               1, 1, 2, 2,
-               3, 2, 2, 2,
-               2, 2, 3, 3,
-               4, 3, 3, 3,
-               3, 3, 3, 4,
-               5, 4, 4, 3,
-               4, 4, 5, 5,
-               5, 5, 5, 4,
-               5, 5, 5, 6,
-               6, 6, 5, 5,
-               5, 6, 6, 6,
-               7, 7, 6, 6,
-               6, 7, 7, 8,
-               8, 8, 7, 7,
-               8, 8, 8, 8,
-               9, 8, 8, 8,
-               8, 8, 9, 9,
-               9, 9, 9, 9
-               ]
+    pattern = [0, 0, 1, 2, 2,
+               2, 1, 1, 0, 0,
+               1, 1, 2, 2, 2,
+               3, 2, 2, 2, 2,
+               2, 2, 3, 3, 3,
+               4, 3, 3, 3, 4,
+               3, 3, 3, 4, 4,
+               5, 4, 4, 3, 3,
+               4, 4, 5, 5, 5,
+               5, 5, 5, 4, 4,
+               5, 5, 5, 6, 6,
+               6, 6, 5, 5, 5,
+               5, 6, 6, 6, 6,
+               7, 7, 6, 6, 6,
+               6, 7, 7, 8, 8,
+               8, 8, 7, 7, 7,
+               8, 8, 8, 8, 8,
+               9, 8, 8, 8, 8,
+               8, 8, 9, 9, 9,
+               9, 9, 9, 9, 9]
 
     spi = SPI(
         1,
